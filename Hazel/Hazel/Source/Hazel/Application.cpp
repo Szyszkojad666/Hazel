@@ -6,7 +6,6 @@ namespace Hazel {
 	{
 	}
 
-
 	Application::~Application()
 	{
 	}
