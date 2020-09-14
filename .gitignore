@@ -1,0 +1,8 @@
+# Directories
+.vs/
+Binary/
+Intermediate/
+
+# Files
+*.user
+*.ipch
