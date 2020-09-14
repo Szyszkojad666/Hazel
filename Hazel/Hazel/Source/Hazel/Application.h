@@ -4,18 +4,18 @@
 
 namespace Hazel {
 
-	class HAZEL_API Application
-	{
-	public:
+class HAZEL_API Application
+{
+public:
 
-		Application();
-		virtual ~Application();
+	Application();
+	virtual ~Application();
 
-	public:
+public:
 
-		void Run();
-	};
+	void Run();
+};
 
-	// To be defined in CLIENT
-	Application* CreateApplication();
+// To be defined in CLIENT
+Application* CreateApplication();
 }
