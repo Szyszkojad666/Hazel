@@ -1,3 +1,4 @@
+#include "Hzpch.h"
 #include "Application.h"
 #include "Event/AppEvent.h"
 #include "Log.h"
