@@ -10,6 +10,11 @@ workspace "Hazel"
 
 	outputdir = "%{cfg.buildcfg}-{cfg.system}-%{cfg.architecture}"
 
+	IncludeDir = {}
+	IncludeDir["GLFW"] = "Hazel/Hazel/Vendor/GLFW/include"
+
+	include "Hazel/Hazel/Vendor/GLFW"
+
 project "Hazel"
 	location "Hazel"
 	kind "SharedLib"
@@ -30,6 +35,13 @@ project "Hazel"
 	includedirs
 	{
 		"Hazel/Hazel/Vendor/spdlog/include";
+		"%IncludeDir.GLFW"
+	}
+
+	links
+	{
+		"GLFW",
+		"opengl32.lib"
 	}
 
 	filter "system:windows" 
