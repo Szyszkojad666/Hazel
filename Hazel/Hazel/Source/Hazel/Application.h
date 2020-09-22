@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Core.h"
+#include "Window.h"
 
 namespace Hazel {
 
@@ -14,6 +15,11 @@ public:
 public:
 
 	void Run();
+
+private:
+
+	std::unique_ptr<IWindow> MainWindow;
+	bool bRunning;
 };
 
 // To be defined in CLIENT

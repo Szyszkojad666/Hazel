@@ -159,7 +159,9 @@
     <ClInclude Include="Hazel\Source\Hazel\Event\KeyEvent.h" />
     <ClInclude Include="Hazel\Source\Hazel\Event\MouseEvent.h" />
     <ClInclude Include="Hazel\Source\Hazel\Log.h" />
+    <ClInclude Include="Hazel\Source\Hazel\Window.h" />
     <ClInclude Include="Hazel\Source\Hzpch.h" />
+    <ClInclude Include="Hazel\Source\Platform\WindowsWindow.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Hazel\Source\Hazel\Application.cpp" />
@@ -167,6 +169,7 @@
     <ClCompile Include="Hazel\Source\Hzpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Hazel\Source\Platform\WindowsWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Hazel\Vendor\GLFW\GLFW.vcxproj">

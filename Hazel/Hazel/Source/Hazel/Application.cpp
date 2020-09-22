@@ -1,12 +1,15 @@
 #include "Hzpch.h"
 #include "Application.h"
 #include "Event/AppEvent.h"
-#include "Log.h"
+#include "../../GLFW/include/GLFW/glfw3.h"
+
 
 namespace Hazel {
 
 	Application::Application()
 	{
+		MainWindow = std::unique_ptr<IWindow>(IWindow::Create());
+		bRunning = true;
 	}
 
 	Application::~Application()
@@ -15,12 +18,12 @@ namespace Hazel {
 
 	void Application::Run()
 	{
-		WindowResizeEvent Resize(1200, 720);
-		HZ_CORE_TRACE(Resize);
-
-		while (true)
+		while (bRunning)
 		{
-
+			if (MainWindow)
+			{
+				MainWindow->OnUpdate();
+			}
 		}
 	}
 }
