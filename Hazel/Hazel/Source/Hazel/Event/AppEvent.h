@@ -4,14 +4,14 @@
 
 namespace Hazel {
 
-class HAZEL_API WindowResizeEvent : public Event
+class HAZEL_API HWindowResizeEvent : public HEvent
 {
 public:
 
 	EVENT_CLASS_TYPE(WindowResize)
 	EVENT_CLASS_CATEGORY(EventCategoryApplication)
 
-	WindowResizeEvent(unsigned int width, unsigned int height)
+	HWindowResizeEvent(unsigned int width, unsigned int height)
 		: Width(width), Height(height) {}
 
 	inline unsigned int GetWidth() { return Width; }
@@ -30,43 +30,43 @@ private:
 
 };
 
-class HAZEL_API WindowCloseEvent : public Event
+class HAZEL_API HWindowCloseEvent : public HEvent
 {
 public:
 
 	EVENT_CLASS_TYPE(WindowClose)
 	EVENT_CLASS_CATEGORY(EventCategoryApplication)
 
-	WindowCloseEvent() {}
+	HWindowCloseEvent() {}
 };
 
-class HAZEL_API AppTickEvent : public Event
+class HAZEL_API HAppTickEvent : public HEvent
 {
 public:
 
 	EVENT_CLASS_TYPE(AppTick)
 	EVENT_CLASS_CATEGORY(EventCategoryApplication)
 
-	AppTickEvent() {}
+	HAppTickEvent() {}
 };
 
-class HAZEL_API AppUpdateEvent : public Event
+class HAZEL_API HAppUpdateEvent : public HEvent
 {
 public:
 
 	EVENT_CLASS_TYPE(AppUpdate)
 	EVENT_CLASS_CATEGORY(EventCategoryApplication)
 
-	AppUpdateEvent() {}
+	HAppUpdateEvent() {}
 };
 
-class HAZEL_API AppRenderEvent : public Event
+class HAZEL_API HAppRenderEvent : public HEvent
 {
 public:
 
 	EVENT_CLASS_TYPE(AppRender)
 	EVENT_CLASS_CATEGORY(EventCategoryApplication)
 
-	AppRenderEvent() {}
+	HAppRenderEvent() {}
 };
 }

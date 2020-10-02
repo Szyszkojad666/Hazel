@@ -5,7 +5,7 @@
 
 namespace Hazel {
 
-struct WindowData
+struct FWindowData
 {
 	std::string Title;
 	unsigned int Width, Height;
@@ -37,10 +37,12 @@ private:
 	virtual void Init(const WindowProperties& Props);
 	virtual void Shutdown();
 
+	static void GLFWErrorCallback(int ErrorCode, const char* Description);
+
 private:
 
 	GLFWwindow* Window;
-	WindowData Data;
+	FWindowData Data;
 };
 	
 

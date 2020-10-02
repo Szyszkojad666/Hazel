@@ -4,7 +4,7 @@
 
 namespace Hazel {
 
-enum class EventType
+enum class EEventType
 {
 	None = 0,
 	WindowClose, WindowResize, WindowFocus, WindowLostFocus, WindowMoved,
@@ -12,7 +12,7 @@ enum class EventType
 	MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled
 };
 
-enum EventCategory
+enum EEventCategory
 {
 	None = 0,
 	EventCategoryApplication = BIT(0),
@@ -22,24 +22,24 @@ enum EventCategory
 	EventCategoryMouseButton = BIT(4)
 };
 
-#define EVENT_CLASS_TYPE(type) static EventType GetStaticType() { return EventType::##type; }\
-								virtual EventType GetEventType() const override { return GetStaticType(); }\
+#define EVENT_CLASS_TYPE(type) static EEventType GetStaticType() { return EEventType::##type; }\
+								virtual EEventType GetEventType() const override { return GetStaticType(); }\
 								virtual const char* GetName() const override { return #type; }
 
 #define  EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override { return category; }
 
-class HAZEL_API Event
+class HAZEL_API HEvent
 {
 	friend class EventDispatcher;
 
 public:
 
-	virtual EventType GetEventType() const = 0;
+	virtual EEventType GetEventType() const = 0;
 	virtual const char* GetName() const = 0;
 	virtual int GetCategoryFlags() const = 0;
 	virtual std::string ToString() const { return GetName(); }
 
-	inline bool IsInCategory(EventCategory Category)
+	inline bool IsInCategory(EEventCategory Category)
 	{
 		return GetCategoryFlags() & Category;
 	}
@@ -57,7 +57,7 @@ class HAZEL_API EventDispatcher
 
 public:
 
-	EventDispatcher(Event& event)
+	EventDispatcher(HEvent& event)
 		: m_Event(event) {}
 
 	template<typename T>
@@ -74,10 +74,10 @@ public:
 
 private:
 
-	Event& m_Event;
+	HEvent& m_Event;
 };
 
-inline std::ostream& operator<<(std::ostream& os, const Event& e)
+inline std::ostream& operator<<(std::ostream& os, const HEvent& e)
 {
 	 return os << e.ToString();
 }
