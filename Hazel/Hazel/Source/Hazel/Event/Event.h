@@ -44,6 +44,8 @@ public:
 		return GetCategoryFlags() & Category;
 	}
 
+	inline bool IsHandled() { return bHandled; }
+
 protected:
 
 	bool bHandled = false;

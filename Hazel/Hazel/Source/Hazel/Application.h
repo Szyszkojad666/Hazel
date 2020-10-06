@@ -3,6 +3,9 @@
 #include "Core.h"
 #include "Window.h"
 #include "Event/AppEvent.h"
+#include "LayerStack.h"
+
+class HLayer;
 
 namespace Hazel {
 
@@ -13,20 +16,20 @@ public:
 	Application();
 	virtual ~Application();
 
-public:
-
 	void Run();
+
+	void PushLayer(HLayer* Layer);
+	void PushOverlay(HLayer* Layer);
 
 protected:
 
 	void OnEvent(HEvent& Event);
-
-private:
-
 	bool OnWindowClose(HWindowCloseEvent& Event);
 
 	std::unique_ptr<IWindow> MainWindow;
 	bool bRunning;
+
+	HLayerStack LayerStack;
 };
 
 // To be defined in CLIENT

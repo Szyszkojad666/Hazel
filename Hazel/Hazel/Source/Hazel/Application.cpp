@@ -2,6 +2,7 @@
 #include "Application.h"
 #include "../../GLFW/include/GLFW/glfw3.h"
 
+
 namespace Hazel {
 
 #define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
@@ -24,9 +25,24 @@ namespace Hazel {
 		{
 			if (MainWindow)
 			{
+				for (HLayer* Layer : LayerStack)
+				{
+					Layer->OnUpdate();
+				}
+
 				MainWindow->OnUpdate();
 			}
 		}
+	}
+
+	void Application::PushLayer(HLayer* Layer)
+	{
+		LayerStack.PushLayer(Layer);
+	}
+
+	void Application::PushOverlay(HLayer* Layer)
+	{
+		LayerStack.PushOverlay(Layer);
 	}
 
 	void Application::OnEvent(HEvent& Event)
@@ -34,7 +50,14 @@ namespace Hazel {
 		EventDispatcher Dispatcher(Event);
 		Dispatcher.Dispatch<HWindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
 
-		HZ_CORE_TRACE("{0}", Event);
+		for (auto It = LayerStack.end(); It != LayerStack.begin();)
+		{
+			(*--It)->OnEvent(Event);
+			if (Event.IsHandled())
+			{
+				break;
+			}
+		}
 	}
 
 	bool Application::OnWindowClose(HWindowCloseEvent& Event)
