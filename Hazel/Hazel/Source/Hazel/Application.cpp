@@ -2,6 +2,7 @@
 #include "Application.h"
 #include "../../GLFW/include/GLFW/glfw3.h"
 
+#include <../Hazel/Hazel/Vendor/Glad/include/glad/glad.h>
 
 namespace Hazel {
 
@@ -12,6 +13,8 @@ namespace Hazel {
 		MainWindow = std::unique_ptr<IWindow>(IWindow::Create());
 		MainWindow->SetEventCallback(BIND_EVENT_FN(OnEvent));
 
+		unsigned int id;
+		glGenVertexArrays(1, &id);
 		bRunning = true;
 	}
 

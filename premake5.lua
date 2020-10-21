@@ -12,8 +12,10 @@ workspace "Hazel"
 
 	IncludeDir = {}
 	IncludeDir["GLFW"] = "Hazel/Hazel/Vendor/GLFW/include"
+	IncludeDir["Glad"] = "Hazel/Hazel/Vendor/Glad/include"
 
 	include "Hazel/Hazel/Vendor/GLFW"
+	include "Hazel/Hazel/Vendor/Glad"
 
 project "Hazel"
 	location "Hazel"
@@ -34,13 +36,16 @@ project "Hazel"
 
 	includedirs
 	{
-		"Hazel/Hazel/Vendor/spdlog/include";
-		"%IncludeDir.GLFW"
+		"%{prj.name}/Hazel/Source",
+		"Hazel/Hazel/Vendor/spdlog/include",
+		"%IncludeDir.GLFW",
+		"%IncludeDir.Glad"
 	}
 
 	links
 	{
 		"GLFW",
+		"Glad",
 		"opengl32.lib"
 	}
 
@@ -52,7 +57,8 @@ project "Hazel"
 		defines
 		{
 			"HZ_PLATFORM_WINDOWS",
-			"HZ_BUILD_DLL"
+			"HZ_BUILD_DLL",
+			"GLFW_INCLUDE_NONE"
 		}
 
 	postbuildcommands

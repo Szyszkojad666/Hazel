@@ -5,6 +5,8 @@
 
 #include <vector>
 
+class HLayer;
+
 namespace Hazel {
 
 class HAZEL_API HLayerStack

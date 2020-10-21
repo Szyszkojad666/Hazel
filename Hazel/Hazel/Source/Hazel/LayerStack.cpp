@@ -1,7 +1,6 @@
 #include "Hzpch.h"
 #include "LayerStack.h"
 
-
 namespace Hazel {
 
 HLayerStack::HLayerStack()
