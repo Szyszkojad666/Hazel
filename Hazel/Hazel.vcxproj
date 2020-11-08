@@ -81,7 +81,7 @@
       <PrecompiledHeaderFile>Hzpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>HZ_PLATFORM_WINDOWS;HZ_BUILD_DLL;GLFW_INCLUDE_NONE;HZ_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Hazel\Source;Hazel\Vendor\spdlog\include;..\%IncludeDir.GLFW;..\%IncludeDir.Glad;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Hazel\Source;Hazel\Vendor\spdlog\include;..\%IncludeDir.GLFW;..\%IncludeDir.Glad;..\%IncludeDir.ImGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -104,7 +104,7 @@
       <PrecompiledHeaderFile>Hzpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>HZ_PLATFORM_WINDOWS;HZ_BUILD_DLL;GLFW_INCLUDE_NONE;HZ_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Hazel\Source;Hazel\Vendor\spdlog\include;..\%IncludeDir.GLFW;..\%IncludeDir.Glad;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Hazel\Source;Hazel\Vendor\spdlog\include;..\%IncludeDir.GLFW;..\%IncludeDir.Glad;..\%IncludeDir.ImGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -131,7 +131,7 @@
       <PrecompiledHeaderFile>Hzpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>HZ_PLATFORM_WINDOWS;HZ_BUILD_DLL;GLFW_INCLUDE_NONE;HZ_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Hazel\Source;Hazel\Vendor\spdlog\include;..\%IncludeDir.GLFW;..\%IncludeDir.Glad;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Hazel\Source;Hazel\Vendor\spdlog\include;..\%IncludeDir.GLFW;..\%IncludeDir.Glad;..\%IncludeDir.ImGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -161,21 +161,25 @@
     <ClInclude Include="Hazel\Source\Hazel\Event\Event.h" />
     <ClInclude Include="Hazel\Source\Hazel\Event\KeyEvent.h" />
     <ClInclude Include="Hazel\Source\Hazel\Event\MouseEvent.h" />
+    <ClInclude Include="Hazel\Source\Hazel\ImGui\ImGuiLayer.h" />
     <ClInclude Include="Hazel\Source\Hazel\Layer.h" />
     <ClInclude Include="Hazel\Source\Hazel\LayerStack.h" />
     <ClInclude Include="Hazel\Source\Hazel\Log.h" />
     <ClInclude Include="Hazel\Source\Hazel\Window.h" />
     <ClInclude Include="Hazel\Source\Hzpch.h" />
+    <ClInclude Include="Hazel\Source\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
     <ClInclude Include="Hazel\Source\Platform\WindowsWindow.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Hazel\Source\Hazel\Application.cpp" />
+    <ClCompile Include="Hazel\Source\Hazel\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="Hazel\Source\Hazel\Layer.cpp" />
     <ClCompile Include="Hazel\Source\Hazel\LayerStack.cpp" />
     <ClCompile Include="Hazel\Source\Hazel\Log.cpp" />
     <ClCompile Include="Hazel\Source\Hzpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Hazel\Source\Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
     <ClCompile Include="Hazel\Source\Platform\WindowsWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -184,6 +188,9 @@
     </ProjectReference>
     <ProjectReference Include="Hazel\Vendor\Glad\Glad.vcxproj">
       <Project>{BDD6857C-A90D-870D-52FA-6C103E10030F}</Project>
+    </ProjectReference>
+    <ProjectReference Include="Hazel\Vendor\imgui\ImGui.vcxproj">
+      <Project>{C0FF640D-2C14-8DBE-F595-301E616989EF}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

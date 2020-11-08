@@ -21,6 +21,9 @@ public:
 	void PushLayer(HLayer* Layer);
 	void PushOverlay(HLayer* Layer);
 
+	inline static Application& Get() { return *s_Instance; }
+	inline IWindow& GetWindow() { return *MainWindow; }
+
 protected:
 
 	void OnEvent(HEvent& Event);
@@ -30,6 +33,10 @@ protected:
 	bool bRunning;
 
 	HLayerStack LayerStack;
+
+private:
+
+	static Application* s_Instance;
 };
 
 // To be defined in CLIENT
