@@ -5,9 +5,11 @@
 #include "../Hazel/Hazel/Source/Platform/OpenGL/ImGuiOpenGLRenderer.h"
 #include "../Hazel/Hazel/Vendor/GLFW/include/GLFW/glfw3.h"
 
-//#include "Hazel/Event/Event.h
-
 #include "Hazel/Application.h"
+
+// TEMP
+#include "../../GLFW/include/GLFW/glfw3.h"
+#include "../../Glad/include/glad/glad.h"
 
 namespace Hazel {
 
@@ -80,13 +82,97 @@ namespace Hazel {
 		static bool bShow = true;
 		ImGui::ShowDemoWindow(&bShow);
 
-	
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 	}
 
 	void ImGuiLayer::OnEvent(HEvent& Event)
 	{
-
+		EventDispatcher Dispatcher(Event);
+		Dispatcher.Dispatch<HMouseButtonPressedEvent>(HZ_BIND_EVENT_FN(ImGuiLayer::OnMouseButtonPressed));
+		Dispatcher.Dispatch<HMouseButtonReleasedEvent>(HZ_BIND_EVENT_FN(ImGuiLayer::OnMouseButtonReleased));
+		Dispatcher.Dispatch<HMouseMovedEvent>(HZ_BIND_EVENT_FN(ImGuiLayer::OnMouseMoved));
+		Dispatcher.Dispatch<HMouseScrolledEvent>(HZ_BIND_EVENT_FN(ImGuiLayer::OnMouseScrolled));
+		Dispatcher.Dispatch<HKeyPressedEvent>(HZ_BIND_EVENT_FN(ImGuiLayer::OnKeyPressed));
+		Dispatcher.Dispatch<HKeyReleasedEvent>(HZ_BIND_EVENT_FN(ImGuiLayer::OnKeyReleased));
+		Dispatcher.Dispatch<HKeyTypedEvent>(HZ_BIND_EVENT_FN(ImGuiLayer::OnKeyTyped));
+		Dispatcher.Dispatch<HWindowResizeEvent>(HZ_BIND_EVENT_FN(ImGuiLayer::OnWindowResised));
 	}
+
+	bool ImGuiLayer::OnMouseButtonPressed(HMouseButtonPressedEvent& Event)
+	{
+		ImGuiIO& Io = ImGui::GetIO();
+		Io.MouseDown[Event.GetMouseButton()] = true;
+		
+		return false;
+	}
+
+	bool ImGuiLayer::OnMouseButtonReleased(HMouseButtonReleasedEvent& Event)
+	{
+		ImGuiIO& Io = ImGui::GetIO();
+		Io.MouseDown[Event.GetMouseButton()] = false;
+		
+		return false;
+	}
+
+	bool ImGuiLayer::OnMouseMoved(HMouseMovedEvent& Event)
+	{
+		ImGuiIO& Io = ImGui::GetIO();
+		Io.MousePos = ImVec2(Event.GetX(), Event.GetY());
+
+		return false;
+	}
+
+	bool ImGuiLayer::OnMouseScrolled(HMouseScrolledEvent& Event)
+	{
+		ImGuiIO& Io = ImGui::GetIO();
+		Io.MouseWheel += Event.GetYOffset();
+		Io.MouseWheelH += Event.GetXOffset();
+
+		return false;
+	}
+
+	bool ImGuiLayer::OnKeyPressed(HKeyPressedEvent& Event)
+	{
+		ImGuiIO& Io = ImGui::GetIO();
+		Io.KeysDown[Event.GetKeyCode()] = true;
+		
+		Io.KeyCtrl = Io.KeysDown[GLFW_KEY_LEFT_CONTROL] || Io.KeysDown[GLFW_KEY_RIGHT_CONTROL];
+		Io.KeyShift = Io.KeysDown[GLFW_KEY_LEFT_SHIFT] || Io.KeysDown[GLFW_KEY_RIGHT_SHIFT];
+		Io.KeyAlt = Io.KeysDown[GLFW_KEY_LEFT_ALT] || Io.KeysDown[GLFW_KEY_RIGHT_ALT];
+		Io.KeySuper = Io.KeysDown[GLFW_KEY_LEFT_SUPER] || Io.KeysDown[GLFW_KEY_RIGHT_SUPER];
+
+		return false;
+	}
+
+	bool ImGuiLayer::OnKeyReleased(HKeyReleasedEvent& Event)
+	{
+		ImGuiIO& Io = ImGui::GetIO();
+		Io.KeysDown[Event.GetKeyCode()] = false;
+
+		return false;
+	}
+
+	bool ImGuiLayer::OnKeyTyped(HKeyTypedEvent& Event)
+	{
+		int KeyCode = Event.GetKeyCode();
+		if (KeyCode > 0 && KeyCode < 0x10000)
+		{
+			ImGuiIO& io = ImGui::GetIO();
+			io.AddInputCharacter(KeyCode);
+		}
+
+		return false;
+	}
+
+	bool ImGuiLayer::OnWindowResised(HWindowResizeEvent& Event)
+	{
+		ImGuiIO& Io = ImGui::GetIO();
+		Io.DisplaySize = ImVec2(Event.GetWidth(), Event.GetHeight());
+		Io.DisplayFramebufferScale = ImVec2(1.0f, 1.0f);
+		glViewport(0, 0, Event.GetWidth(), Event.GetHeight());
+		
+		return false;
+	}
+
 }

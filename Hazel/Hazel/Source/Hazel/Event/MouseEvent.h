@@ -65,19 +65,19 @@ public:
 protected:
 	
 	HMouseButtonEvent(int button)
-		: Button(Button) {}
+		: Button(button) {}
 
 	int Button;
 };
 
-class HAZEL_API HMousePressedEvent : public HMouseButtonEvent
+class HAZEL_API HMouseButtonPressedEvent : public HMouseButtonEvent
 {
 public:
 
 	EVENT_CLASS_TYPE(MouseButtonPressed);
 
-	HMousePressedEvent(int button)
-		: HMouseButtonEvent(Button) {}
+	HMouseButtonPressedEvent(int button)
+		: HMouseButtonEvent(button) {}
 
 	std::string ToString() const override
 	{
@@ -87,13 +87,13 @@ public:
 	}
 };
 
-class HAZEL_API HMouseReleasedEvent : public HMouseButtonEvent
+class HAZEL_API HMouseButtonReleasedEvent : public HMouseButtonEvent
 {
 public:
 
 	EVENT_CLASS_TYPE(MouseButtonReleased);
 
-	HMouseReleasedEvent(int button)
+	HMouseButtonReleasedEvent(int button)
 		: HMouseButtonEvent(button) {}
 
 	std::string ToString() const override

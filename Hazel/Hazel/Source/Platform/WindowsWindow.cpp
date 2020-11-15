@@ -116,6 +116,14 @@ void WindowsWindow::Init(const WindowProperties& Props)
 		}
 	});
 
+	glfwSetCharCallback(Window, [](GLFWwindow* window, unsigned int keycode)
+	{
+		FWindowData& Data = *(FWindowData*)glfwGetWindowUserPointer(window);
+
+		HKeyTypedEvent Event(keycode);
+		Data.EventCallback(Event);
+	});
+
 	glfwSetMouseButtonCallback(Window, [](GLFWwindow* window, int button, int action, int mods)
 	{
 		FWindowData& Data = *(FWindowData*)glfwGetWindowUserPointer(window);
@@ -124,14 +132,14 @@ void WindowsWindow::Init(const WindowProperties& Props)
 		{
 			case GLFW_PRESS:
 			{
-				HMousePressedEvent Event(button);
+				HMouseButtonPressedEvent Event(button);
 				Data.EventCallback(Event);
 				break;
 			}
 
 			case GLFW_RELEASE:
 			{
-				HMouseReleasedEvent Event(button);
+				HMouseButtonReleasedEvent Event(button);
 				Data.EventCallback(Event);
 				break;
 			}

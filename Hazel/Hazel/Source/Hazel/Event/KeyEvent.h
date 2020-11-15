@@ -60,4 +60,21 @@ public:
 	}
 };
 
+class HAZEL_API HKeyTypedEvent : public HKeyEvent
+{
+public:
+
+	EVENT_CLASS_TYPE(KeyTyped);
+
+	HKeyTypedEvent(int keycode)
+		: HKeyEvent(keycode) {}
+
+	std::string ToString() const override
+	{
+		std::stringstream ss;
+		ss << "KeyTyped event: " << KeyCode;
+		return ss.str();
+	}
+};
+
 }

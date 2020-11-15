@@ -39,6 +39,6 @@ private:
 	static Application* s_Instance;
 };
 
-// To be defined in CLIENT
-Application* CreateApplication();
+	// To be defined in CLIENT
+	Application* CreateApplication();
 }
