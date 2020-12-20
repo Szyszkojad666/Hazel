@@ -6,14 +6,10 @@ public:
 	HExampleLayer()
 		: HLayer("Example") {}
 
-	/*void OnUpdate() override
-	{
-		HZ_CLIENT_INFO("ExampleLayer::Update");
-	}*/
-
 	void OnEvent(Hazel::HEvent& Event) override
 	{
-		HZ_CLIENT_TRACE("{0}", Event);
+		// TODO: Causes crashes, fix it!
+		/*HZ_CLIENT_TRACE("{0}, {1}", Event);*/
 	}
 };
 

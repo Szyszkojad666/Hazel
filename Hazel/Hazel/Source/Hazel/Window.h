@@ -40,6 +40,8 @@ public:
 	virtual void SetVSync(bool bEnable) = 0;
 	virtual bool IsVSync() const = 0;
 
+	virtual void* GetNativeWindow() const = 0;
+
 	static IWindow* Create(const WindowProperties& InProps = WindowProperties());
 };
 

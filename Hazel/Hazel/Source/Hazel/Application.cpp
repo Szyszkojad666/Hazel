@@ -1,5 +1,6 @@
 #include "Hzpch.h"
 #include "Application.h"
+#include "Hazel/Input.h"
 #include "../../GLFW/include/GLFW/glfw3.h"
 
 #include <../Hazel/Hazel/Vendor/Glad/include/glad/glad.h>
@@ -37,6 +38,9 @@ namespace Hazel {
 				{
 					Layer->OnUpdate();
 				}
+
+				auto[x, y] = HInput::GetMousePosition();
+				HZ_CORE_TRACE("{0}, {1}", x, y);
 
 				MainWindow->OnUpdate();
 			}

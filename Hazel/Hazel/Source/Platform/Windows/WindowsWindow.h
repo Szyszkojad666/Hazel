@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Hazel/Window.h"
+#include "../Source/Hazel/Window.h"
 #include "../../GLFW/include/GLFW/glfw3.h"
 
 
@@ -32,6 +32,8 @@ public:
 	inline void SetEventCallback(const EventCallbackFn& callback) override { Data.EventCallback = callback; }
 	virtual void SetVSync(bool bEnable);
 	virtual bool IsVSync() const;
+
+	inline virtual void* GetNativeWindow() const { return Window; }
 
 private:
 
