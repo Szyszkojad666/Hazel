@@ -15,6 +15,7 @@ workspace "Hazel"
 	IncludeDir["GLFW"] = "Hazel/Hazel/Vendor/GLFW/include"
 	IncludeDir["Glad"] = "Hazel/Hazel/Vendor/Glad/include"
 	IncludeDir["ImGui"] = "Hazel/Hazel/Vendor/imgui"
+	IncludeDir["glm"] = "Hazel/Hazel/Vendor/glm"
 
 	include "Hazel/Hazel/Vendor/GLFW"
 	include "Hazel/Hazel/Vendor/Glad"
@@ -35,7 +36,9 @@ project "Hazel"
 	files
 	{
 		"%{prj.name}/Hazel/Source/**.h",
-		"%{prj.name}/Hazel/Source/**.cpp"
+		"%{prj.name}/Hazel/Source/**.cpp",
+		"%{prj.name}/Hazel/Vendor/glm/glm/**.hpp",
+		"%{prj.name}/Hazel/Vendor/glm/glm/**.inl"
 	}
 
 	includedirs
@@ -44,7 +47,8 @@ project "Hazel"
 		"Hazel/Hazel/Vendor/spdlog/include",
 		"%IncludeDir.GLFW",
 		"%IncludeDir.Glad",
-		"%IncludeDir.ImGui"
+		"%IncludeDir.ImGui",
+		"%IncludeDir.glm",
 	}
 
 	links
@@ -105,7 +109,8 @@ project "Hazel"
 	includedirs
 	{
 		"Hazel/Hazel/Vendor/spdlog/include",
-		"Hazel/Hazel/Source"
+		"Hazel/Hazel/Source",
+		"%{IncludeDir.glm}"
 	}
 
 	links

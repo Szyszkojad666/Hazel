@@ -11,6 +11,14 @@ public:
 		// TODO: Causes crashes, fix it!
 		/*HZ_CLIENT_TRACE("{0}, {1}", Event);*/
 	}
+
+	void OnUpdate() override
+	{
+		if (Hazel::HInput::IsKeyPressed(HZ_KEY_TAB))
+		{
+			HZ_CORE_TRACE("Tab is pressed!");
+		}
+	}
 };
 
 class Sandbox : public Hazel::Application

@@ -79,9 +79,9 @@ private:
 	HEvent& m_Event;
 };
 
-inline std::ostream& operator<<(std::ostream& os, const HEvent& e)
+inline std::ostream& operator<<(std::ostream& os, const HEvent& Event)
 {
-	 return os << e.ToString();
+	 return os << Event.ToString();
 }
 
 }

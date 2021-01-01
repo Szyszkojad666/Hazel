@@ -5,6 +5,8 @@
 
 #include <../Hazel/Hazel/Vendor/Glad/include/glad/glad.h>
 
+#include <../Hazel/Hazel/Vendor/glm/glm/glm.hpp>
+
 namespace Hazel {
 
 #define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
@@ -38,9 +40,6 @@ namespace Hazel {
 				{
 					Layer->OnUpdate();
 				}
-
-				auto[x, y] = HInput::GetMousePosition();
-				HZ_CORE_TRACE("{0}, {1}", x, y);
 
 				MainWindow->OnUpdate();
 			}
