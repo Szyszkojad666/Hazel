@@ -23,7 +23,6 @@ protected:
 private:
 	
 	static HInput* InputInstance;
-
 };
 
 };

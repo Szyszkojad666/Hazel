@@ -1,6 +1,5 @@
 #include "Hzpch.h"
 #include "WindowInput.h"
-#include "WindowInput.h"
 
 #include "../../GLFW/include/GLFW/glfw3.h"
 #include "Hazel/Application.h"
@@ -18,7 +17,7 @@ bool HWindowInput::IsKeyPressedImpl(int Keycode)
 		KeyState = glfwGetKey(Window, Keycode);
 	}
 
-	return KeyState == GLFW_PRESS || GLFW_REPEAT;
+	return KeyState;
 }
 
 bool HWindowInput::IsMouseButtonPressedImpl(int Button)
@@ -30,7 +29,7 @@ bool HWindowInput::IsMouseButtonPressedImpl(int Button)
 		ButtonState = glfwGetMouseButton(Window, Button);
 	}
 
-	return ButtonState == GLFW_PRESS || GLFW_REPEAT;
+	return ButtonState;
 }
 
 std::pair<float, float> HWindowInput::GetMousePositionImpl()
