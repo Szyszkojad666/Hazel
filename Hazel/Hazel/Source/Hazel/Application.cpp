@@ -7,6 +7,8 @@
 
 #include <../Hazel/Hazel/Vendor/glm/glm/glm.hpp>
 
+
+
 namespace Hazel {
 
 #define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
@@ -24,6 +26,9 @@ namespace Hazel {
 		unsigned int id;
 		glGenVertexArrays(1, &id);
 		bRunning = true;
+
+		ImGuiLayerPtr = new ImGuiLayer();
+		PushOverlay(ImGuiLayerPtr);
 	}
 
 	Application::~Application()
@@ -34,13 +39,25 @@ namespace Hazel {
 	{
 		while (bRunning)
 		{
-			if (MainWindow)
+			for (HLayer* Layer : LayerStack)
 			{
+				Layer->OnUpdate();
+			}
+				
+			if (ImGuiLayerPtr)
+			{
+				ImGuiLayerPtr->Begin();
+
 				for (HLayer* Layer : LayerStack)
 				{
-					Layer->OnUpdate();
+					Layer->OnImGuiRender();
 				}
 
+				ImGuiLayerPtr->End();
+			}
+
+			if (MainWindow)
+			{
 				MainWindow->OnUpdate();
 			}
 		}

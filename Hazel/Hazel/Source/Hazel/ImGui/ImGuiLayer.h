@@ -2,9 +2,6 @@
 
 #include "Hazel/Core.h"
 #include "Hazel/Layer.h"
-#include "Hazel/Event/AppEvent.h"
-#include "Hazel/Event/KeyEvent.h"
-#include "Hazel/Event/MouseEvent.h"
 
 namespace Hazel {
 
@@ -16,19 +13,9 @@ public:
 
 	virtual void OnAttach() override;
 	virtual void OnDetach() override;
-	virtual void OnUpdate() override;
-	virtual void OnEvent(HEvent& Event);
-
-private:
-
-	bool OnMouseButtonPressed(HMouseButtonPressedEvent& Event);
-	bool OnMouseButtonReleased(HMouseButtonReleasedEvent& Event);
-	bool OnMouseMoved(HMouseMovedEvent& Event);
-	bool OnMouseScrolled(HMouseScrolledEvent& Event);
-	bool OnKeyPressed(HKeyPressedEvent& Event);
-	bool OnKeyReleased(HKeyReleasedEvent& Event);
-	bool OnKeyTyped(HKeyTypedEvent& Event);
-	bool OnWindowResised(HWindowResizeEvent& Event);
+	virtual void Begin();
+	virtual void End();
+	virtual void OnImGuiRender() override;
 
 private:
 

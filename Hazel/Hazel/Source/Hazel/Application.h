@@ -4,6 +4,7 @@
 #include "Window.h"
 #include "Event/AppEvent.h"
 #include "LayerStack.h"
+#include "Hazel/ImGui/ImGuiLayer.h"
 
 class HLayer;
 
@@ -29,14 +30,16 @@ protected:
 	void OnEvent(HEvent& Event);
 	bool OnWindowClose(HWindowCloseEvent& Event);
 
-	std::unique_ptr<IWindow> MainWindow;
 	bool bRunning;
 
 	HLayerStack LayerStack;
-
+	std::unique_ptr<IWindow> MainWindow;
+	
 private:
 
 	static Application* s_Instance;
+	
+	ImGuiLayer* ImGuiLayerPtr;
 };
 
 	// To be defined in CLIENT

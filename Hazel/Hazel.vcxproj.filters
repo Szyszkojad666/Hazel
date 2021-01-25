@@ -16,9 +16,6 @@
     <Filter Include="Source\Platform">
       <UniqueIdentifier>{6A48A913-D6D3-16D8-DFE4-99CC4BEF72D8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Platform\OpenGL">
-      <UniqueIdentifier>{5E160775-4A10-30C7-337D-C6D71F169633}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\Platform\Windows">
       <UniqueIdentifier>{A4BC056E-10F4-4D05-19FE-B12885B474FE}</UniqueIdentifier>
     </Filter>
@@ -95,9 +92,6 @@
     </ClInclude>
     <ClInclude Include="Hazel\Source\Hzpch.h">
       <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="Hazel\Source\Platform\OpenGL\ImGuiOpenGLRenderer.h">
-      <Filter>Source\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="Hazel\Source\Platform\Windows\WindowInput.h">
       <Filter>Source\Platform\Windows</Filter>
@@ -1349,6 +1343,9 @@
     <ClCompile Include="Hazel\Source\Hazel\Application.cpp">
       <Filter>Source\Hazel</Filter>
     </ClCompile>
+    <ClCompile Include="Hazel\Source\Hazel\ImGui\ImGuiBuild.cpp">
+      <Filter>Source\Hazel\ImGui</Filter>
+    </ClCompile>
     <ClCompile Include="Hazel\Source\Hazel\ImGui\ImGuiLayer.cpp">
       <Filter>Source\Hazel\ImGui</Filter>
     </ClCompile>
@@ -1363,9 +1360,6 @@
     </ClCompile>
     <ClCompile Include="Hazel\Source\Hzpch.cpp">
       <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Hazel\Source\Platform\OpenGL\ImGuiOpenGLRenderer.cpp">
-      <Filter>Source\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="Hazel\Source\Platform\Windows\WindowInput.cpp">
       <Filter>Source\Platform\Windows</Filter>

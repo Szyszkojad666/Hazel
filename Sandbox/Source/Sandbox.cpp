@@ -1,4 +1,5 @@
 #include <Hazel.h>
+#include "imgui/imgui.h"
 
 class HExampleLayer : public Hazel::HLayer
 {
@@ -19,6 +20,13 @@ public:
 			HZ_CORE_TRACE("Tab is pressed!");
 		}
 	}
+
+	virtual void OnImGuiRender() override
+	{
+		ImGui::Begin("Test");
+		ImGui::Text("HelloWorld");
+		ImGui::End();
+	}
 };
 
 class Sandbox : public Hazel::Application
@@ -28,7 +36,6 @@ public:
 	Sandbox()
 	{
 		PushLayer(new HExampleLayer());
-		PushOverlay(new Hazel::ImGuiLayer());
 	}
 
 	~Sandbox()

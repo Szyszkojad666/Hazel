@@ -24,19 +24,19 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v141</PlatformToolset>
@@ -55,25 +55,22 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LinkIncremental>true</LinkIncremental>
     <OutDir>..\Binary\Debug-{cfg.system}-x86_64\Hazel\</OutDir>
     <IntDir>..\Intermediate\Debug-{cfg.system}-x86_64\Hazel\</IntDir>
     <TargetName>Hazel</TargetName>
-    <TargetExt>.dll</TargetExt>
+    <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <LinkIncremental>false</LinkIncremental>
     <OutDir>..\Binary\Release-{cfg.system}-x86_64\Hazel\</OutDir>
     <IntDir>..\Intermediate\Release-{cfg.system}-x86_64\Hazel\</IntDir>
     <TargetName>Hazel</TargetName>
-    <TargetExt>.dll</TargetExt>
+    <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
-    <LinkIncremental>false</LinkIncremental>
     <OutDir>..\Binary\Dist-{cfg.system}-x86_64\Hazel\</OutDir>
     <IntDir>..\Intermediate\Dist-{cfg.system}-x86_64\Hazel\</IntDir>
     <TargetName>Hazel</TargetName>
-    <TargetExt>.dll</TargetExt>
+    <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -90,11 +87,12 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ImportLibrary>..\Binary\Debug-{cfg.system}-x86_64\Hazel\Hazel.lib</ImportLibrary>
     </Link>
+    <Lib>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
     <PostBuildEvent>
-      <Command>IF EXIST ..\Binary\Debug-{cfg.system}-x86_64\Hazel\Hazel.dll\ (xcopy /Q /E /Y /I ..\Binary\Debug-{cfg.system}-x86_64\Hazel\Hazel.dll ..\Binary\Debug-{cfg.system}-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\Binary\Debug-{cfg.system}-x86_64\Hazel\Hazel.dll ..\Binary\Debug-{cfg.system}-x86_64\Sandbox &gt; nul)</Command>
+      <Command>IF EXIST ..\Binary\Debug-{cfg.system}-x86_64\Hazel\Hazel.lib\ (xcopy /Q /E /Y /I ..\Binary\Debug-{cfg.system}-x86_64\Hazel\Hazel.lib ..\Binary\Debug-{cfg.system}-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\Binary\Debug-{cfg.system}-x86_64\Hazel\Hazel.lib ..\Binary\Debug-{cfg.system}-x86_64\Sandbox &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -116,11 +114,12 @@
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ImportLibrary>..\Binary\Release-{cfg.system}-x86_64\Hazel\Hazel.lib</ImportLibrary>
     </Link>
+    <Lib>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
     <PostBuildEvent>
-      <Command>IF EXIST ..\Binary\Release-{cfg.system}-x86_64\Hazel\Hazel.dll\ (xcopy /Q /E /Y /I ..\Binary\Release-{cfg.system}-x86_64\Hazel\Hazel.dll ..\Binary\Release-{cfg.system}-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\Binary\Release-{cfg.system}-x86_64\Hazel\Hazel.dll ..\Binary\Release-{cfg.system}-x86_64\Sandbox &gt; nul)</Command>
+      <Command>IF EXIST ..\Binary\Release-{cfg.system}-x86_64\Hazel\Hazel.lib\ (xcopy /Q /E /Y /I ..\Binary\Release-{cfg.system}-x86_64\Hazel\Hazel.lib ..\Binary\Release-{cfg.system}-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\Binary\Release-{cfg.system}-x86_64\Hazel\Hazel.lib ..\Binary\Release-{cfg.system}-x86_64\Sandbox &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
@@ -142,11 +141,12 @@
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ImportLibrary>..\Binary\Dist-{cfg.system}-x86_64\Hazel\Hazel.lib</ImportLibrary>
     </Link>
+    <Lib>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
     <PostBuildEvent>
-      <Command>IF EXIST ..\Binary\Dist-{cfg.system}-x86_64\Hazel\Hazel.dll\ (xcopy /Q /E /Y /I ..\Binary\Dist-{cfg.system}-x86_64\Hazel\Hazel.dll ..\Binary\Dist-{cfg.system}-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\Binary\Dist-{cfg.system}-x86_64\Hazel\Hazel.dll ..\Binary\Dist-{cfg.system}-x86_64\Sandbox &gt; nul)</Command>
+      <Command>IF EXIST ..\Binary\Dist-{cfg.system}-x86_64\Hazel\Hazel.lib\ (xcopy /Q /E /Y /I ..\Binary\Dist-{cfg.system}-x86_64\Hazel\Hazel.lib ..\Binary\Dist-{cfg.system}-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\Binary\Dist-{cfg.system}-x86_64\Hazel\Hazel.lib ..\Binary\Dist-{cfg.system}-x86_64\Sandbox &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -167,7 +167,6 @@
     <ClInclude Include="Hazel\Source\Hazel\MouseButtonCodes.h" />
     <ClInclude Include="Hazel\Source\Hazel\Window.h" />
     <ClInclude Include="Hazel\Source\Hzpch.h" />
-    <ClInclude Include="Hazel\Source\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
     <ClInclude Include="Hazel\Source\Platform\Windows\WindowInput.h" />
     <ClInclude Include="Hazel\Source\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="Hazel\Vendor\glm\glm\common.hpp" />
@@ -586,6 +585,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Hazel\Source\Hazel\Application.cpp" />
+    <ClCompile Include="Hazel\Source\Hazel\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="Hazel\Source\Hazel\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="Hazel\Source\Hazel\Layer.cpp" />
     <ClCompile Include="Hazel\Source\Hazel\LayerStack.cpp" />
@@ -593,7 +593,6 @@
     <ClCompile Include="Hazel\Source\Hzpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Hazel\Source\Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
     <ClCompile Include="Hazel\Source\Platform\Windows\WindowInput.cpp" />
     <ClCompile Include="Hazel\Source\Platform\Windows\WindowsWindow.cpp" />
   </ItemGroup>

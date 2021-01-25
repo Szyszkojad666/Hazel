@@ -23,9 +23,9 @@ workspace "Hazel"
 
 project "Hazel"
 	location "Hazel"
-	kind "SharedLib"
+	kind "StaticLib"
 	language "C++"
-	staticruntime "off"
+	staticruntime "on"
 
 	targetdir ("Binary/" ..outputdir .."/%{prj.name}")
 	objdir ("Intermediate/" ..outputdir .."/%{prj.name}")
@@ -95,7 +95,7 @@ project "Hazel"
 		location "Sandbox"
 		kind "ConsoleApp"
 		language "C++"
-		staticruntime "off"
+		staticruntime "on"
 
 	targetdir ("Binary/" ..outputdir .."/%{prj.name}")
 	objdir ("Intermediate/" ..outputdir .."/%{prj.name}")
@@ -110,6 +110,7 @@ project "Hazel"
 	{
 		"Hazel/Hazel/Vendor/spdlog/include",
 		"Hazel/Hazel/Source",
+		"Hazel/Hazel/Vendor",
 		"%{IncludeDir.glm}"
 	}
 

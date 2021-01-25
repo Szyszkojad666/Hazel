@@ -5,7 +5,6 @@ namespace Hazel {
 
 HLayerStack::HLayerStack()
 {
-	LayerInsert = Layers.begin();
 }
 
 HLayerStack::~HLayerStack()
@@ -18,7 +17,8 @@ HLayerStack::~HLayerStack()
 
 void HLayerStack::PushLayer(HLayer* Layer)
 {
-	LayerInsert = Layers.emplace(LayerInsert, Layer);
+	Layers.emplace(Layers.begin() + LayerInsertIdx, Layer);
+	LayerInsertIdx++;
 }
 
 void HLayerStack::PopLayer(HLayer* Layer)
@@ -27,7 +27,7 @@ void HLayerStack::PopLayer(HLayer* Layer)
 	if (It != end())
 	{
 		Layers.erase(It);
-		LayerInsert--;
+		LayerInsertIdx--;
 	}
 }
 

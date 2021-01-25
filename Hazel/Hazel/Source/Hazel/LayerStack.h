@@ -27,7 +27,7 @@ public:
 private:
 
 	std::vector<HLayer*> Layers;
-	std::vector<HLayer*>::iterator LayerInsert;
+	unsigned int LayerInsertIdx = 0;
 };
 
 };
