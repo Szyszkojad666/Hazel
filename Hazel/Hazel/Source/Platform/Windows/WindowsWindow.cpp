@@ -5,7 +5,7 @@
 #include "../Source/Hazel/Event/MouseEvent.h"
 #include "../Source/Hazel/Event/KeyEvent.h"
 
-#include <../Hazel/Hazel/Vendor/Glad/include/glad/glad.h>
+#include "glad/glad.h"
 
 
 namespace Hazel {

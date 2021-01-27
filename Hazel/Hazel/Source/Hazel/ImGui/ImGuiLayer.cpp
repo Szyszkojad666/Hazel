@@ -1,12 +1,12 @@
 #include "Hzpch.h"
 #include "ImGuiLayer.h"
 
-#include <../Hazel/Hazel/Vendor/imgui/imgui.h>
+#include <imgui.h>
 #define IMGUI_IMPL_OPENGL_LOADER_GLAD
-#include "../../imgui/examples/imgui_impl_glfw.h"
-#include "../../imgui/examples/imgui_impl_opengl3.h"
+#include <examples/imgui_impl_glfw.cpp>
+#include <examples/imgui_impl_opengl3.cpp>
 
-#include "../Hazel/Hazel/Vendor/GLFW/include/GLFW/glfw3.h"
+#include <GLFW/glfw3.h>
 
 #include "Hazel/Application.h"
 

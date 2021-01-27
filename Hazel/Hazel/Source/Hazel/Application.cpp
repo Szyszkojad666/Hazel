@@ -3,9 +3,9 @@
 #include "Hazel/Input.h"
 #include "../../GLFW/include/GLFW/glfw3.h"
 
-#include <../Hazel/Hazel/Vendor/Glad/include/glad/glad.h>
+#include <glad/glad.h>
 
-#include <../Hazel/Hazel/Vendor/glm/glm/glm.hpp>
+#include <glm/glm.hpp>
 
 
 

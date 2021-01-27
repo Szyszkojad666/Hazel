@@ -45,10 +45,10 @@ project "Hazel"
 	{
 		"%{prj.name}/Hazel/Source",
 		"Hazel/Hazel/Vendor/spdlog/include",
-		"%IncludeDir.GLFW",
-		"%IncludeDir.Glad",
-		"%IncludeDir.ImGui",
-		"%IncludeDir.glm",
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}",
+		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.glm}",
 	}
 
 	links
@@ -91,11 +91,11 @@ project "Hazel"
 		runtime "Release"
 		optimize "On"
 
-	project "Sandbox"
-		location "Sandbox"
-		kind "ConsoleApp"
-		language "C++"
-		staticruntime "on"
+project "Sandbox"
+	location "Sandbox"
+	kind "ConsoleApp"
+	language "C++"
+	staticruntime "on"
 
 	targetdir ("Binary/" ..outputdir .."/%{prj.name}")
 	objdir ("Intermediate/" ..outputdir .."/%{prj.name}")
@@ -142,8 +142,3 @@ project "Hazel"
 		defines "HZ_DIST"
 		runtime "Release"
 		optimize "On"
-
-	project "Sandbox"
-		location "Sandbox"
-		kind "ConsoleApp"
-		language "C++"
