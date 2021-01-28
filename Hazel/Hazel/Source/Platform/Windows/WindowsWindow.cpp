@@ -150,7 +150,7 @@ void WindowsWindow::Init(const WindowProperties& Props)
 	{
 		FWindowData& Data = *(FWindowData*)glfwGetWindowUserPointer(window);
 
-		HMouseScrolledEvent Event(XOffset, YOffset);
+		HMouseScrolledEvent Event((float)XOffset, (float)YOffset);
 		Data.EventCallback(Event);
 	});
 
@@ -158,7 +158,7 @@ void WindowsWindow::Init(const WindowProperties& Props)
 	{
 		FWindowData& Data = *(FWindowData*)glfwGetWindowUserPointer(window);
 
-		HMouseMovedEvent Event(XOffset, YOffset);
+		HMouseMovedEvent Event((float)XOffset, (float)YOffset);
 		Data.EventCallback(Event);
 	});
 	/////////////////////////////////////////////////////////////////////////////////

@@ -7,9 +7,6 @@
     <Filter Include="Source\Hazel">
       <UniqueIdentifier>{D9321BF2-C595-AA96-6E1B-E34C5A5D7619}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Hazel\Event">
-      <UniqueIdentifier>{EAB21B6D-D696-DCC2-3FF7-D6152BFAC644}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\Hazel\ImGui">
       <UniqueIdentifier>{C3A65E6D-AF8A-1FC3-18EB-191604EE0945}</UniqueIdentifier>
     </Filter>
@@ -42,63 +39,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Hazel\Source\Hazel.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="Hazel\Source\Hazel\Application.h">
-      <Filter>Source\Hazel</Filter>
-    </ClInclude>
-    <ClInclude Include="Hazel\Source\Hazel\Core.h">
-      <Filter>Source\Hazel</Filter>
-    </ClInclude>
-    <ClInclude Include="Hazel\Source\Hazel\EntryPoint.h">
-      <Filter>Source\Hazel</Filter>
-    </ClInclude>
-    <ClInclude Include="Hazel\Source\Hazel\Event\AppEvent.h">
-      <Filter>Source\Hazel\Event</Filter>
-    </ClInclude>
-    <ClInclude Include="Hazel\Source\Hazel\Event\Event.h">
-      <Filter>Source\Hazel\Event</Filter>
-    </ClInclude>
-    <ClInclude Include="Hazel\Source\Hazel\Event\KeyEvent.h">
-      <Filter>Source\Hazel\Event</Filter>
-    </ClInclude>
-    <ClInclude Include="Hazel\Source\Hazel\Event\MouseEvent.h">
-      <Filter>Source\Hazel\Event</Filter>
-    </ClInclude>
-    <ClInclude Include="Hazel\Source\Hazel\ImGui\ImGuiLayer.h">
-      <Filter>Source\Hazel\ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="Hazel\Source\Hazel\Input.h">
-      <Filter>Source\Hazel</Filter>
-    </ClInclude>
-    <ClInclude Include="Hazel\Source\Hazel\KeyCodes.h">
-      <Filter>Source\Hazel</Filter>
-    </ClInclude>
-    <ClInclude Include="Hazel\Source\Hazel\Layer.h">
-      <Filter>Source\Hazel</Filter>
-    </ClInclude>
-    <ClInclude Include="Hazel\Source\Hazel\LayerStack.h">
-      <Filter>Source\Hazel</Filter>
-    </ClInclude>
-    <ClInclude Include="Hazel\Source\Hazel\Log.h">
-      <Filter>Source\Hazel</Filter>
-    </ClInclude>
-    <ClInclude Include="Hazel\Source\Hazel\MouseButtonCodes.h">
-      <Filter>Source\Hazel</Filter>
-    </ClInclude>
-    <ClInclude Include="Hazel\Source\Hazel\Window.h">
-      <Filter>Source\Hazel</Filter>
-    </ClInclude>
-    <ClInclude Include="Hazel\Source\Hzpch.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="Hazel\Source\Platform\Windows\WindowInput.h">
-      <Filter>Source\Platform\Windows</Filter>
-    </ClInclude>
-    <ClInclude Include="Hazel\Source\Platform\Windows\WindowsWindow.h">
-      <Filter>Source\Platform\Windows</Filter>
-    </ClInclude>
     <ClInclude Include="Hazel\Vendor\glm\glm\common.hpp">
       <Filter>Vendor\glm\glm</Filter>
     </ClInclude>

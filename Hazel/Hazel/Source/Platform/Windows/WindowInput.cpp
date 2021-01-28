@@ -41,7 +41,7 @@ std::pair<float, float> HWindowInput::GetMousePositionImpl()
 		glfwGetCursorPos(Window, &MouseX, &MouseY);
 	}
 
-	return std::pair<float, float>(MouseX, MouseY);
+	return std::pair<float, float>((float)MouseX, (float)MouseY);
 }
 
 

@@ -77,7 +77,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>Hzpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>HZ_PLATFORM_WINDOWS;HZ_BUILD_DLL;GLFW_INCLUDE_NONE;HZ_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;HZ_PLATFORM_WINDOWS;HZ_BUILD_DLL;GLFW_INCLUDE_NONE;HZ_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>Hazel\Source;Hazel\Vendor\spdlog\include;Hazel\Vendor\GLFW\include;Hazel\Vendor\Glad\include;Hazel\Vendor\imgui;Hazel\Vendor\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
@@ -91,16 +91,13 @@
     <Lib>
       <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
-    <PostBuildEvent>
-      <Command>IF EXIST ..\Binary\Debug-{cfg.system}-x86_64\Hazel\Hazel.lib\ (xcopy /Q /E /Y /I ..\Binary\Debug-{cfg.system}-x86_64\Hazel\Hazel.lib ..\Binary\Debug-{cfg.system}-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\Binary\Debug-{cfg.system}-x86_64\Hazel\Hazel.lib ..\Binary\Debug-{cfg.system}-x86_64\Sandbox &gt; nul)</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>Hzpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>HZ_PLATFORM_WINDOWS;HZ_BUILD_DLL;GLFW_INCLUDE_NONE;HZ_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;HZ_PLATFORM_WINDOWS;HZ_BUILD_DLL;GLFW_INCLUDE_NONE;HZ_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>Hazel\Source;Hazel\Vendor\spdlog\include;Hazel\Vendor\GLFW\include;Hazel\Vendor\Glad\include;Hazel\Vendor\imgui;Hazel\Vendor\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -118,16 +115,13 @@
     <Lib>
       <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
-    <PostBuildEvent>
-      <Command>IF EXIST ..\Binary\Release-{cfg.system}-x86_64\Hazel\Hazel.lib\ (xcopy /Q /E /Y /I ..\Binary\Release-{cfg.system}-x86_64\Hazel\Hazel.lib ..\Binary\Release-{cfg.system}-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\Binary\Release-{cfg.system}-x86_64\Hazel\Hazel.lib ..\Binary\Release-{cfg.system}-x86_64\Sandbox &gt; nul)</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>Hzpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>HZ_PLATFORM_WINDOWS;HZ_BUILD_DLL;GLFW_INCLUDE_NONE;HZ_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;HZ_PLATFORM_WINDOWS;HZ_BUILD_DLL;GLFW_INCLUDE_NONE;HZ_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>Hazel\Source;Hazel\Vendor\spdlog\include;Hazel\Vendor\GLFW\include;Hazel\Vendor\Glad\include;Hazel\Vendor\imgui;Hazel\Vendor\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -145,30 +139,8 @@
     <Lib>
       <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
-    <PostBuildEvent>
-      <Command>IF EXIST ..\Binary\Dist-{cfg.system}-x86_64\Hazel\Hazel.lib\ (xcopy /Q /E /Y /I ..\Binary\Dist-{cfg.system}-x86_64\Hazel\Hazel.lib ..\Binary\Dist-{cfg.system}-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\Binary\Dist-{cfg.system}-x86_64\Hazel\Hazel.lib ..\Binary\Dist-{cfg.system}-x86_64\Sandbox &gt; nul)</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Hazel\Source\Hazel.h" />
-    <ClInclude Include="Hazel\Source\Hazel\Application.h" />
-    <ClInclude Include="Hazel\Source\Hazel\Core.h" />
-    <ClInclude Include="Hazel\Source\Hazel\EntryPoint.h" />
-    <ClInclude Include="Hazel\Source\Hazel\Event\AppEvent.h" />
-    <ClInclude Include="Hazel\Source\Hazel\Event\Event.h" />
-    <ClInclude Include="Hazel\Source\Hazel\Event\KeyEvent.h" />
-    <ClInclude Include="Hazel\Source\Hazel\Event\MouseEvent.h" />
-    <ClInclude Include="Hazel\Source\Hazel\ImGui\ImGuiLayer.h" />
-    <ClInclude Include="Hazel\Source\Hazel\Input.h" />
-    <ClInclude Include="Hazel\Source\Hazel\KeyCodes.h" />
-    <ClInclude Include="Hazel\Source\Hazel\Layer.h" />
-    <ClInclude Include="Hazel\Source\Hazel\LayerStack.h" />
-    <ClInclude Include="Hazel\Source\Hazel\Log.h" />
-    <ClInclude Include="Hazel\Source\Hazel\MouseButtonCodes.h" />
-    <ClInclude Include="Hazel\Source\Hazel\Window.h" />
-    <ClInclude Include="Hazel\Source\Hzpch.h" />
-    <ClInclude Include="Hazel\Source\Platform\Windows\WindowInput.h" />
-    <ClInclude Include="Hazel\Source\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="Hazel\Vendor\glm\glm\common.hpp" />
     <ClInclude Include="Hazel\Vendor\glm\glm\detail\_features.hpp" />
     <ClInclude Include="Hazel\Vendor\glm\glm\detail\_fixes.hpp" />

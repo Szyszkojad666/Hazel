@@ -25,6 +25,7 @@ project "Hazel"
 	location "Hazel"
 	kind "StaticLib"
 	language "C++"
+	cppdialect "C++17"
 	staticruntime "on"
 
 	targetdir ("Binary/" ..outputdir .."/%{prj.name}")
@@ -35,10 +36,15 @@ project "Hazel"
 
 	files
 	{
-		"%{prj.name}/Hazel/Source/**.h",
+		"%{prj.name}/Hazel/Sourc**.h",
 		"%{prj.name}/Hazel/Source/**.cpp",
 		"%{prj.name}/Hazel/Vendor/glm/glm/**.hpp",
 		"%{prj.name}/Hazel/Vendor/glm/glm/**.inl"
+	}
+
+	defines
+	{
+		"_CRT_SECURE_NO_WARNINGS"
 	}
 
 	includedirs
@@ -60,7 +66,6 @@ project "Hazel"
 	}
 
 	filter "system:windows" 
-		cppdialect "C++17"
 		staticruntime "On"
 		systemversion "latest"
 
@@ -70,11 +75,6 @@ project "Hazel"
 			"HZ_BUILD_DLL",
 			"GLFW_INCLUDE_NONE"
 		}
-
-	postbuildcommands
-	{
-		("{COPY} %{cfg.buildtarget.relpath} ../Binary/" .. outputdir .. "/Sandbox")
-	}
 
 	filter "configurations:Debug"
 		defines "HZ_DEBUG"
@@ -95,6 +95,7 @@ project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
+	cppdialect "C++17"
 	staticruntime "on"
 
 	targetdir ("Binary/" ..outputdir .."/%{prj.name}")
@@ -120,7 +121,6 @@ project "Sandbox"
 	}
 
 	filter "system:windows" 
-		cppdialect "C++17"
 		systemversion "latest"
 
 		defines
