@@ -3,6 +3,7 @@
 #include "../Source/Hazel/Window.h"
 #include "../../GLFW/include/GLFW/glfw3.h"
 
+#include "Hazel/Renderer/GraphicsContext.h"
 
 namespace Hazel {
 
@@ -45,6 +46,8 @@ private:
 private:
 
 	GLFWwindow* Window;
+	GraphicsContext* Context;
+
 	FWindowData Data;
 };
 	
