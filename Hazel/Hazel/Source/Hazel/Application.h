@@ -40,6 +40,8 @@ private:
 	static Application* s_Instance;
 	
 	ImGuiLayer* ImGuiLayerPtr;
+
+	unsigned int VertexArray, VertexBuffer, IndexBuffer;
 };
 
 	// To be defined in CLIENT
