@@ -141,6 +141,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Hazel\Source\Hazel\Renderer\Shader.h" />
     <ClInclude Include="Hazel\Vendor\glm\glm\common.hpp" />
     <ClInclude Include="Hazel\Vendor\glm\glm\detail\_features.hpp" />
     <ClInclude Include="Hazel\Vendor\glm\glm\detail\_fixes.hpp" />
@@ -562,6 +563,7 @@
     <ClCompile Include="Hazel\Source\Hazel\Layer.cpp" />
     <ClCompile Include="Hazel\Source\Hazel\LayerStack.cpp" />
     <ClCompile Include="Hazel\Source\Hazel\Log.cpp" />
+    <ClCompile Include="Hazel\Source\Hazel\Renderer\Shader.cpp" />
     <ClCompile Include="Hazel\Source\Hzpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>

@@ -6,6 +6,8 @@
 #include "LayerStack.h"
 #include "Hazel/ImGui/ImGuiLayer.h"
 
+#include "Hazel/Renderer/Shader.h"
+
 class HLayer;
 
 namespace Hazel {
@@ -42,6 +44,7 @@ private:
 	ImGuiLayer* ImGuiLayerPtr;
 
 	unsigned int VertexArray, VertexBuffer, IndexBuffer;
+	std::unique_ptr<Shader> ShaderPtr;
 };
 
 	// To be defined in CLIENT
