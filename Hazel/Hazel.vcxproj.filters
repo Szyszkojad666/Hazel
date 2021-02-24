@@ -10,6 +10,9 @@
     <Filter Include="Source\Hazel\ImGui">
       <UniqueIdentifier>{C3A65E6D-AF8A-1FC3-18EB-191604EE0945}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Hazel\Renderer">
+      <UniqueIdentifier>{9FBA5374-0B27-0F6F-D41A-A7CC404631D7}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source\Platform">
       <UniqueIdentifier>{6A48A913-D6D3-16D8-DFE4-99CC4BEF72D8}</UniqueIdentifier>
     </Filter>
@@ -1281,7 +1284,6 @@
     <ClInclude Include="Hazel\Vendor\glm\glm\vector_relational.hpp">
       <Filter>Vendor\glm\glm</Filter>
     </ClInclude>
-    <ClInclude Include="Hazel\Source\Hazel\Renderer\Shader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Hazel\Source\Hazel\Application.cpp">
@@ -1302,8 +1304,20 @@
     <ClCompile Include="Hazel\Source\Hazel\Log.cpp">
       <Filter>Source\Hazel</Filter>
     </ClCompile>
+    <ClCompile Include="Hazel\Source\Hazel\Renderer\Buffer.cpp">
+      <Filter>Source\Hazel\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Hazel\Source\Hazel\Renderer\Renderer.cpp">
+      <Filter>Source\Hazel\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Hazel\Source\Hazel\Renderer\Shader.cpp">
+      <Filter>Source\Hazel\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="Hazel\Source\Hzpch.cpp">
       <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Hazel\Source\Platform\OpenGL\OpenGLBuffer.cpp">
+      <Filter>Source\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="Hazel\Source\Platform\OpenGL\OpenGLContext.cpp">
       <Filter>Source\Platform\OpenGL</Filter>
@@ -1314,6 +1328,5 @@
     <ClCompile Include="Hazel\Source\Platform\Windows\WindowsWindow.cpp">
       <Filter>Source\Platform\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="Hazel\Source\Hazel\Renderer\Shader.cpp" />
   </ItemGroup>
 </Project>

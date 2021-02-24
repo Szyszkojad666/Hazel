@@ -7,6 +7,7 @@
 #include "Hazel/ImGui/ImGuiLayer.h"
 
 #include "Hazel/Renderer/Shader.h"
+#include "Hazel/Renderer/Buffer.h"
 
 class HLayer;
 
@@ -43,8 +44,11 @@ private:
 	
 	ImGuiLayer* ImGuiLayerPtr;
 
-	unsigned int VertexArray, VertexBuffer, IndexBuffer;
+	unsigned int VertexArray;
+
 	std::unique_ptr<Shader> ShaderPtr;
+	std::unique_ptr<VertexBuffer> VertexBufferPtr;
+	std::unique_ptr<IndexBuffer> IndexBufferPtr;
 };
 
 	// To be defined in CLIENT
