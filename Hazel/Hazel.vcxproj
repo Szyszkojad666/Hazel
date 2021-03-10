@@ -141,6 +141,8 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Hazel\Source\Hazel\Renderer\VertexArray.h" />
+    <ClInclude Include="Hazel\Source\Platform\OpenGL\OpenGLVertexArray.h" />
     <ClInclude Include="Hazel\Vendor\glm\glm\common.hpp" />
     <ClInclude Include="Hazel\Vendor\glm\glm\detail\_features.hpp" />
     <ClInclude Include="Hazel\Vendor\glm\glm\detail\_fixes.hpp" />
@@ -565,11 +567,13 @@
     <ClCompile Include="Hazel\Source\Hazel\Renderer\Buffer.cpp" />
     <ClCompile Include="Hazel\Source\Hazel\Renderer\Renderer.cpp" />
     <ClCompile Include="Hazel\Source\Hazel\Renderer\Shader.cpp" />
+    <ClCompile Include="Hazel\Source\Hazel\Renderer\VertexArray.cpp" />
     <ClCompile Include="Hazel\Source\Hzpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Hazel\Source\Platform\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="Hazel\Source\Platform\OpenGL\OpenGLContext.cpp" />
+    <ClCompile Include="Hazel\Source\Platform\OpenGL\OpenGLVertexArray.cpp" />
     <ClCompile Include="Hazel\Source\Platform\Windows\WindowInput.cpp" />
     <ClCompile Include="Hazel\Source\Platform\Windows\WindowsWindow.cpp" />
   </ItemGroup>

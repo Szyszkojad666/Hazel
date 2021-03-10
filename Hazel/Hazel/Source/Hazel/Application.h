@@ -8,6 +8,7 @@
 
 #include "Hazel/Renderer/Shader.h"
 #include "Hazel/Renderer/Buffer.h"
+#include "Hazel/Renderer/VertexArray.h"
 
 class HLayer;
 
@@ -44,11 +45,13 @@ private:
 	
 	ImGuiLayer* ImGuiLayerPtr;
 
-	unsigned int VertexArray;
+	std::shared_ptr<Shader> ShaderPtr;
+	std::shared_ptr<Shader> BlueShader;
+	std::shared_ptr<VertexArray> VertexArrayPtr;
+	std::shared_ptr<VertexBuffer> VertexBufferPtr;
+	std::shared_ptr<IndexBuffer> IndexBufferPtr;
 
-	std::unique_ptr<Shader> ShaderPtr;
-	std::unique_ptr<VertexBuffer> VertexBufferPtr;
-	std::unique_ptr<IndexBuffer> IndexBufferPtr;
+	std::shared_ptr<VertexArray> SquareVertexArrayPtr;
 };
 
 	// To be defined in CLIENT

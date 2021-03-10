@@ -11,17 +11,17 @@ static uint32_t GetShaderDataTypeSize(EShaderDataType Type)
 {
 	switch (Type)
 	{
-		case EShaderDataType::Float:	return 4;
-		case EShaderDataType::Float2:	return 4 * 2;
-		case EShaderDataType::Float3:	return 4 * 3;
-		case EShaderDataType::Float4:	return 4 * 4;
-		case EShaderDataType::Mat3:		return 4 * 3 * 3;
-		case EShaderDataType::Mat4:		return 4 * 4 * 4;
-		case EShaderDataType::Int:		return 4 * 2;
-		case EShaderDataType::Int2:		return 4 * 2;
-		case EShaderDataType::Int3:		return 4 * 3;
-		case EShaderDataType::Int4:		return 4 * 4;
-		case EShaderDataType::Bool:		return 1;
+	case EShaderDataType::Float:	return 4;
+	case EShaderDataType::Float2:	return 4 * 2;
+	case EShaderDataType::Float3:	return 4 * 3;
+	case EShaderDataType::Float4:	return 4 * 4;
+	case EShaderDataType::Mat3:		return 4 * 3 * 3;
+	case EShaderDataType::Mat4:		return 4 * 4 * 4;
+	case EShaderDataType::Int:		return 4 * 2;
+	case EShaderDataType::Int2:		return 4 * 2;
+	case EShaderDataType::Int3:		return 4 * 3;
+	case EShaderDataType::Int4:		return 4 * 4;
+	case EShaderDataType::Bool:		return 1;
 	}
 
 	HZ_CORE_ASSERT(false, "Unkown EShaderDataType!");
@@ -43,26 +43,7 @@ struct BufferElement
 	{
 	}
 
-	uint32_t GetComponentCount() const
-	{
-		switch (Type)
-		{
-			case EShaderDataType::Float:	return 1;
-			case EShaderDataType::Float2:	return 2;
-			case EShaderDataType::Float3:	return 3;
-			case EShaderDataType::Float4:	return 4;
-			case EShaderDataType::Mat3:		return 3 * 3;
-			case EShaderDataType::Mat4:		return 4 * 4;
-			case EShaderDataType::Int:		return 1;
-			case EShaderDataType::Int2:		return 2;
-			case EShaderDataType::Int3:		return 3;
-			case EShaderDataType::Int4:		return 4;
-			case EShaderDataType::Bool:		return 1;
-		}
-
-		HZ_CORE_ASSERT(false, "Unkown EShaderDataType!");
-		return 0;
-	}
+	uint32_t GetComponentCount() const;
 };
 
 class BufferLayout
@@ -75,6 +56,7 @@ public:
 	BufferLayout(const std::initializer_list<BufferElement>& BufferElements)
 		: Elements(BufferElements) 
 		{
+			CalculateOffsetAndStride();
 		}
 
 	inline const std::vector<BufferElement>& GetElements() const { return Elements; }
@@ -82,21 +64,13 @@ public:
 
 	std::vector<BufferElement>::iterator begin() { return Elements.begin(); }
 	std::vector<BufferElement>::iterator end() { return Elements.end(); }
+	std::vector<BufferElement>::const_iterator begin() const { return Elements.begin(); }
+	std::vector<BufferElement>::const_iterator end() const { return Elements.end(); }
 	
 private:
 
-	void CalculateOffsetAndStride()
-	{
-		uint32_t Offset = 0;
-		Stride = 0;
-		for (auto& Element : Elements)
-		{
-			Element.Offset = Offset;
-			Offset += Element.Size;
-			Stride += Element.Size;
-		}
-	}
-
+	void CalculateOffsetAndStride();
+	
 private:
 	std::vector<BufferElement> Elements;
 	uint32_t Stride = 0;
