@@ -1,11 +1,12 @@
 #include "Hzpch.h"
 #include "Application.h"
 #include "Hazel/Input.h"
+
 #include "../../GLFW/include/GLFW/glfw3.h"
-
-#include <glad/glad.h>
-
 #include <glm/glm.hpp>
+
+#include "Renderer/Renderer.h"
+#include "Renderer/RenderCommand.h"
 
 namespace Hazel {
 
@@ -13,7 +14,7 @@ namespace Hazel {
 
 	Application* Application::s_Instance = nullptr;
 
-	static GLenum ShaderDataTypeToOpenGLBaseType(EShaderDataType Type)
+	/*static GLenum ShaderDataTypeToOpenGLBaseType(EShaderDataType Type)
 	{
 		switch (Type)
 		{
@@ -30,9 +31,9 @@ namespace Hazel {
 			case EShaderDataType::Bool:		return GL_BOOL;
 		}
 
-		HZ_CORE_ASSERT(false, "Unkown EShaderDataType!");
+		HZ_CORE_ASSERT(false, "Unknown EShaderDataType!");
 		return 0;
-	}
+	}*/
 
 	Application::Application()
 	{
@@ -42,8 +43,6 @@ namespace Hazel {
 		MainWindow = std::unique_ptr<IWindow>(IWindow::Create());
 		MainWindow->SetEventCallback(BIND_EVENT_FN(OnEvent));
 
-		unsigned int id;
-		glGenVertexArrays(1, &id);
 		bRunning = true;
 
 		ImGuiLayerPtr = new ImGuiLayer();
@@ -81,9 +80,7 @@ namespace Hazel {
 
 		std::shared_ptr<VertexBuffer> SquareVB;
 		SquareVB.reset(VertexBuffer::Create(SquareVerticies, sizeof(SquareVerticies)));
-		SquareVB->SetLayout({
-				{ EShaderDataType::Float3, "a_Position" },
-				});
+		SquareVB->SetLayout({{ EShaderDataType::Float3, "a_Position" }});
 		SquareVertexArrayPtr->AddVertexBuffer(SquareVB);
 
 		uint32_t SquareIndices[6] = { 0, 1, 2, 2, 3, 0 };
@@ -162,16 +159,18 @@ namespace Hazel {
 	{
 		while (bRunning)
 		{
-			glClearColor(0.1f, 0.1f, 0.1f, 1);
-			glClear(GL_COLOR_BUFFER_BIT);
+			RenderCommand::SetClearColor({0.1f, 0.1f, 0.1f, 1});
+			RenderCommand::Clear();
 
+			Renderer::BeginScene();
+			
 			BlueShader->Bind();
-			SquareVertexArrayPtr->Bind();
-			glDrawElements(GL_TRIANGLES, SquareVertexArrayPtr->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
+			Renderer::Submit(SquareVertexArrayPtr);
 
 			ShaderPtr->Bind();
-			VertexArrayPtr->Bind();
-			glDrawElements(GL_TRIANGLES, IndexBufferPtr->GetCount(), GL_UNSIGNED_INT, nullptr);
+			Renderer::Submit(VertexArrayPtr);
+
+			Renderer::EndScene();
 
 			for (HLayer* Layer : LayerStack)
 			{

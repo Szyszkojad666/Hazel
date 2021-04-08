@@ -141,7 +141,10 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Hazel\Source\Hazel\Renderer\RenderCommand.h" />
+    <ClInclude Include="Hazel\Source\Hazel\Renderer\RendererAPI.h" />
     <ClInclude Include="Hazel\Source\Hazel\Renderer\VertexArray.h" />
+    <ClInclude Include="Hazel\Source\Platform\OpenGL\OpenGLRendererAPI.h" />
     <ClInclude Include="Hazel\Source\Platform\OpenGL\OpenGLVertexArray.h" />
     <ClInclude Include="Hazel\Vendor\glm\glm\common.hpp" />
     <ClInclude Include="Hazel\Vendor\glm\glm\detail\_features.hpp" />
@@ -565,7 +568,9 @@
     <ClCompile Include="Hazel\Source\Hazel\LayerStack.cpp" />
     <ClCompile Include="Hazel\Source\Hazel\Log.cpp" />
     <ClCompile Include="Hazel\Source\Hazel\Renderer\Buffer.cpp" />
+    <ClCompile Include="Hazel\Source\Hazel\Renderer\RenderCommand.cpp" />
     <ClCompile Include="Hazel\Source\Hazel\Renderer\Renderer.cpp" />
+    <ClCompile Include="Hazel\Source\Hazel\Renderer\RendererAPI.cpp" />
     <ClCompile Include="Hazel\Source\Hazel\Renderer\Shader.cpp" />
     <ClCompile Include="Hazel\Source\Hazel\Renderer\VertexArray.cpp" />
     <ClCompile Include="Hazel\Source\Hzpch.cpp">
@@ -573,6 +578,7 @@
     </ClCompile>
     <ClCompile Include="Hazel\Source\Platform\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="Hazel\Source\Platform\OpenGL\OpenGLContext.cpp" />
+    <ClCompile Include="Hazel\Source\Platform\OpenGL\OpenGLRendererAPI.cpp" />
     <ClCompile Include="Hazel\Source\Platform\OpenGL\OpenGLVertexArray.cpp" />
     <ClCompile Include="Hazel\Source\Platform\Windows\WindowInput.cpp" />
     <ClCompile Include="Hazel\Source\Platform\Windows\WindowsWindow.cpp" />
