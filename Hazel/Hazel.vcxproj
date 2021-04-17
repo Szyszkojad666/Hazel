@@ -141,11 +141,6 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Hazel\Source\Hazel\Renderer\RenderCommand.h" />
-    <ClInclude Include="Hazel\Source\Hazel\Renderer\RendererAPI.h" />
-    <ClInclude Include="Hazel\Source\Hazel\Renderer\VertexArray.h" />
-    <ClInclude Include="Hazel\Source\Platform\OpenGL\OpenGLRendererAPI.h" />
-    <ClInclude Include="Hazel\Source\Platform\OpenGL\OpenGLVertexArray.h" />
     <ClInclude Include="Hazel\Vendor\glm\glm\common.hpp" />
     <ClInclude Include="Hazel\Vendor\glm\glm\detail\_features.hpp" />
     <ClInclude Include="Hazel\Vendor\glm\glm\detail\_fixes.hpp" />
@@ -568,6 +563,7 @@
     <ClCompile Include="Hazel\Source\Hazel\LayerStack.cpp" />
     <ClCompile Include="Hazel\Source\Hazel\Log.cpp" />
     <ClCompile Include="Hazel\Source\Hazel\Renderer\Buffer.cpp" />
+    <ClCompile Include="Hazel\Source\Hazel\Renderer\Camera\Camera.cpp" />
     <ClCompile Include="Hazel\Source\Hazel\Renderer\RenderCommand.cpp" />
     <ClCompile Include="Hazel\Source\Hazel\Renderer\Renderer.cpp" />
     <ClCompile Include="Hazel\Source\Hazel\Renderer\RendererAPI.cpp" />

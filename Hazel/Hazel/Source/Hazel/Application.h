@@ -9,6 +9,7 @@
 #include "Hazel/Renderer/Shader.h"
 #include "Hazel/Renderer/Buffer.h"
 #include "Hazel/Renderer/VertexArray.h"
+#include "Renderer/Camera/Camera.h"
 
 class HLayer;
 
@@ -52,6 +53,8 @@ private:
 	std::shared_ptr<IndexBuffer> IndexBufferPtr;
 
 	std::shared_ptr<VertexArray> SquareVertexArrayPtr;
+
+	Camera ViewportCamera;
 };
 
 	// To be defined in CLIENT

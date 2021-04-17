@@ -3,7 +3,7 @@
 #include "Hazel/Input.h"
 
 #include "../../GLFW/include/GLFW/glfw3.h"
-#include <glm/glm.hpp>
+#include "glm/glm.hpp"
 
 #include "Renderer/Renderer.h"
 #include "Renderer/RenderCommand.h"
@@ -31,11 +31,13 @@ namespace Hazel {
 			case EShaderDataType::Bool:		return GL_BOOL;
 		}
 
+
 		HZ_CORE_ASSERT(false, "Unknown EShaderDataType!");
 		return 0;
 	}*/
 
 	Application::Application()
+		: ViewportCamera(-1.6f, 1.6f, -0.9f, 0.9f)
 	{
 		HZ_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
@@ -94,6 +96,8 @@ namespace Hazel {
 
 			layout(location = 0) in vec3 a_Position;
 			layout(location = 1) in vec4 a_Color;
+
+			uniform mat4 u_ViewProjection;
 		
 			out vec3 V_Position;
 			out vec4 V_Color;
@@ -102,7 +106,7 @@ namespace Hazel {
 			{
 				V_Position = a_Position;
 				V_Color = a_Color;
-				gl_Position = vec4(a_Position, 1.0);
+				gl_Position = u_ViewProjection * vec4(a_Position, 1.0);
 			}
 		)";
 
@@ -126,11 +130,13 @@ namespace Hazel {
 
 			layout(location = 0) in vec3 a_Position;
 			out vec3 V_Position;
-		
+			
+			uniform mat4 u_ViewProjection;
+
 			void main()
 			{
 				V_Position = a_Position;
-				gl_Position = vec4(a_Position, 1.0);
+				gl_Position = u_ViewProjection * vec4(a_Position, 1.0);
 			}
 		)";
 
@@ -161,14 +167,14 @@ namespace Hazel {
 		{
 			RenderCommand::SetClearColor({0.1f, 0.1f, 0.1f, 1});
 			RenderCommand::Clear();
-
-			Renderer::BeginScene();
 			
-			BlueShader->Bind();
-			Renderer::Submit(SquareVertexArrayPtr);
+			ViewportCamera.SetPosition({0.5f, 0.5f, 0.f});
+			ViewportCamera.SetRotation({45.f});
 
-			ShaderPtr->Bind();
-			Renderer::Submit(VertexArrayPtr);
+			Renderer::BeginScene(ViewportCamera);
+			
+			Renderer::Submit(SquareVertexArrayPtr, BlueShader);
+			Renderer::Submit(VertexArrayPtr, ShaderPtr);
 
 			Renderer::EndScene();
 
