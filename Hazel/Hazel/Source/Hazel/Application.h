@@ -4,12 +4,8 @@
 #include "Window.h"
 #include "Event/AppEvent.h"
 #include "LayerStack.h"
-#include "Hazel/ImGui/ImGuiLayer.h"
 
-#include "Hazel/Renderer/Shader.h"
-#include "Hazel/Renderer/Buffer.h"
-#include "Hazel/Renderer/VertexArray.h"
-#include "Renderer/Camera/Camera.h"
+#include "Hazel/ImGui/ImGuiLayer.h"
 
 class HLayer;
 
@@ -45,16 +41,6 @@ private:
 	static Application* s_Instance;
 	
 	ImGuiLayer* ImGuiLayerPtr;
-
-	std::shared_ptr<Shader> ShaderPtr;
-	std::shared_ptr<Shader> BlueShader;
-	std::shared_ptr<VertexArray> VertexArrayPtr;
-	std::shared_ptr<VertexBuffer> VertexBufferPtr;
-	std::shared_ptr<IndexBuffer> IndexBufferPtr;
-
-	std::shared_ptr<VertexArray> SquareVertexArrayPtr;
-
-	Camera ViewportCamera;
 };
 
 	// To be defined in CLIENT

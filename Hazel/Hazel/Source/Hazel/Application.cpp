@@ -5,9 +5,6 @@
 #include "../../GLFW/include/GLFW/glfw3.h"
 #include "glm/glm.hpp"
 
-#include "Renderer/Renderer.h"
-#include "Renderer/RenderCommand.h"
-
 namespace Hazel {
 
 #define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
@@ -37,7 +34,6 @@ namespace Hazel {
 	}*/
 
 	Application::Application()
-		: ViewportCamera(-1.6f, 1.6f, -0.9f, 0.9f)
 	{
 		HZ_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
@@ -49,112 +45,6 @@ namespace Hazel {
 
 		ImGuiLayerPtr = new ImGuiLayer();
 		PushOverlay(ImGuiLayerPtr);
-
-		VertexArrayPtr.reset(VertexArray::Create());
-
-		float Verticies[3 * 7] = {
-			-0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f,
-			0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f,
-			0.0f, 0.5f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f
-		};
-
-		VertexBufferPtr.reset(VertexBuffer::Create(Verticies, sizeof(Verticies)));
-		BufferLayout Layout = {
-			{ EShaderDataType::Float3, "a_Position" },
-			{ EShaderDataType::Float4, "a_Color" }
-		};
-
-		VertexBufferPtr->SetLayout(Layout);
-		VertexArrayPtr->AddVertexBuffer(VertexBufferPtr);
-
-		uint32_t Indices[3] = { 0, 1, 2 };
-		IndexBufferPtr.reset(IndexBuffer::Create(Indices, sizeof(Indices) / sizeof(uint32_t)));
-		VertexArrayPtr->SetIndexBuffer(IndexBufferPtr);
-
-		SquareVertexArrayPtr.reset(VertexArray::Create());
-
-		float SquareVerticies[3 * 4] = {
-			-0.5f, -0.5f, 0.0f, 
-			 0.5f, -0.5f, 0.0f, 
-			 0.5f,  0.5f, 0.0f,
-			-0.5f,  0.5f, 0.0f
-		};
-
-		std::shared_ptr<VertexBuffer> SquareVB;
-		SquareVB.reset(VertexBuffer::Create(SquareVerticies, sizeof(SquareVerticies)));
-		SquareVB->SetLayout({{ EShaderDataType::Float3, "a_Position" }});
-		SquareVertexArrayPtr->AddVertexBuffer(SquareVB);
-
-		uint32_t SquareIndices[6] = { 0, 1, 2, 2, 3, 0 };
-		std::shared_ptr<IndexBuffer> SquareIB;
-		SquareIB.reset(IndexBuffer::Create(SquareIndices, sizeof(SquareIndices) / sizeof(uint32_t)));
-		SquareVertexArrayPtr->SetIndexBuffer(SquareIB);
-
-		// R"() allows writing chars in strings in separate lines
-		std::string VertexSrc = R"(
-			#version 330 core
-
-			layout(location = 0) in vec3 a_Position;
-			layout(location = 1) in vec4 a_Color;
-
-			uniform mat4 u_ViewProjection;
-		
-			out vec3 V_Position;
-			out vec4 V_Color;
-
-			void main()
-			{
-				V_Position = a_Position;
-				V_Color = a_Color;
-				gl_Position = u_ViewProjection * vec4(a_Position, 1.0);
-			}
-		)";
-
-		std::string FragmentSrc = R"(
-			#version 330 core
-
-			layout(location = 0) out vec4 Color;
-			 
-			in vec3 V_Position;
-			in vec4 V_Color;
-
-			void main()
-			{
-				Color = vec4(V_Position * 0.5 + 0.5, 1.0);
-				Color = V_Color;
-			}
-		)";
-
-		std::string BlueShaderVertexSrc = R"(
-			#version 330 core
-
-			layout(location = 0) in vec3 a_Position;
-			out vec3 V_Position;
-			
-			uniform mat4 u_ViewProjection;
-
-			void main()
-			{
-				V_Position = a_Position;
-				gl_Position = u_ViewProjection * vec4(a_Position, 1.0);
-			}
-		)";
-
-		std::string BlueShaderFragmentSrc = R"(
-			#version 330 core
-
-			layout(location = 0) out vec4 Color;
-			 
-			in vec3 V_Position;
-	
-			void main()
-			{
-				Color = vec4(0.2, 0.3, 0.8, 1.0);
-			}
-		)";
-
-		ShaderPtr.reset(new Shader(VertexSrc, FragmentSrc));
-		BlueShader.reset(new Shader(BlueShaderVertexSrc, BlueShaderFragmentSrc));
 	}
 
 	Application::~Application()
@@ -165,19 +55,6 @@ namespace Hazel {
 	{
 		while (bRunning)
 		{
-			RenderCommand::SetClearColor({0.1f, 0.1f, 0.1f, 1});
-			RenderCommand::Clear();
-			
-			ViewportCamera.SetPosition({0.5f, 0.5f, 0.f});
-			ViewportCamera.SetRotation({45.f});
-
-			Renderer::BeginScene(ViewportCamera);
-			
-			Renderer::Submit(SquareVertexArrayPtr, BlueShader);
-			Renderer::Submit(VertexArrayPtr, ShaderPtr);
-
-			Renderer::EndScene();
-
 			for (HLayer* Layer : LayerStack)
 			{
 				Layer->OnUpdate();
