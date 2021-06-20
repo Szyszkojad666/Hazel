@@ -4,6 +4,7 @@
 
 #include "../../GLFW/include/GLFW/glfw3.h"
 #include "glm/glm.hpp"
+#include "GLFW/glfw3.h"
 
 namespace Hazel {
 
@@ -55,9 +56,13 @@ namespace Hazel {
 	{
 		while (bRunning)
 		{
+			const float Time = glfwGetTime(); // Platform::Seconds()
+			FTimeStep TimeStep = Time - LastFrameTime;
+			LastFrameTime = Time;
+
 			for (HLayer* Layer : LayerStack)
 			{
-				Layer->OnUpdate();
+				Layer->OnUpdate(TimeStep);
 			}
 				
 			if (ImGuiLayerPtr)

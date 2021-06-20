@@ -5,6 +5,8 @@
 #include "Event/AppEvent.h"
 #include "LayerStack.h"
 
+#include "Hazel/Core/TimeStep.h"
+
 #include "Hazel/ImGui/ImGuiLayer.h"
 
 class HLayer;
@@ -41,6 +43,8 @@ private:
 	static Application* s_Instance;
 	
 	ImGuiLayer* ImGuiLayerPtr;
+
+	float LastFrameTime = 0.0f;
 };
 
 	// To be defined in CLIENT

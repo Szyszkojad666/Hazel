@@ -13,6 +13,8 @@
 
 #include "Hazel/Log.h"
 
+#include "Hazel/Core/TimeStep.h"
+
 ////////////////////////////////////////
 // Renderer
 #include "Hazel/Renderer/Renderer.h"

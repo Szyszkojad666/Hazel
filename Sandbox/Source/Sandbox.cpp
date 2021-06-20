@@ -1,7 +1,8 @@
-#include <Hazel.h>
+#include "Hazel.h"
 #include "imgui/imgui.h"
 #include "Hazel/Event/KeyEvent.h"
 #include "Hazel/Input.h"
+//#include "Hazel/Core/TimeStep.h"
 
 class HExampleLayer : public Hazel::HLayer
 {
@@ -121,16 +122,18 @@ public:
 	
 	}
 
-	void OnUpdate() override
+	void OnUpdate(Hazel::FTimeStep TimeStep) override
 	{
-		if (Hazel::HInput::IsKeyPressed(HZ_KEY_LEFT)) CameraPosition.x -= CameraMoveSpeed;
-		else if (Hazel::HInput::IsKeyPressed(HZ_KEY_RIGHT)) CameraPosition.x += CameraMoveSpeed;
+		HZ_CLIENT_TRACE("Delta time: {0}s, ({1}ms)", TimeStep.GetDeltaSeconds(), TimeStep.GetDeltaMiliseconds());
+
+		if (Hazel::HInput::IsKeyPressed(HZ_KEY_LEFT)) CameraPosition.x -= CameraMoveSpeed * TimeStep;
+		else if (Hazel::HInput::IsKeyPressed(HZ_KEY_RIGHT)) CameraPosition.x += CameraMoveSpeed * TimeStep;
 		
-		if (Hazel::HInput::IsKeyPressed(HZ_KEY_UP)) CameraPosition.y += CameraMoveSpeed;
-		else if (Hazel::HInput::IsKeyPressed(HZ_KEY_DOWN)) 	CameraPosition.y -= CameraMoveSpeed;
+		if (Hazel::HInput::IsKeyPressed(HZ_KEY_UP)) CameraPosition.y += CameraMoveSpeed * TimeStep;
+		else if (Hazel::HInput::IsKeyPressed(HZ_KEY_DOWN)) 	CameraPosition.y -= CameraMoveSpeed * TimeStep;
 		
-		if (Hazel::HInput::IsKeyPressed(HZ_KEY_A)) CameraRotation += CameraRotationSpeed;
-		else if (Hazel::HInput::IsKeyPressed(HZ_KEY_D)) CameraRotation -= CameraRotationSpeed;
+		if (Hazel::HInput::IsKeyPressed(HZ_KEY_A)) CameraRotation += CameraRotationSpeed * TimeStep;
+		else if (Hazel::HInput::IsKeyPressed(HZ_KEY_D)) CameraRotation -= CameraRotationSpeed * TimeStep;
 
 		Hazel::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 		Hazel::RenderCommand::Clear();
@@ -163,8 +166,8 @@ private:
 	Hazel::Camera ViewportCamera;
 	glm::vec3 CameraPosition;
 	float CameraRotation = 0.f;
-	float CameraMoveSpeed = 0.1f;
-	float CameraRotationSpeed = 2.0f;
+	float CameraMoveSpeed = 5.f;
+	float CameraRotationSpeed = 180.0f;
 };
 
 class Sandbox : public Hazel::Application

@@ -2,6 +2,7 @@
 
 #include "Core.h"
 #include "Event/Event.h"
+#include "Hazel/Core/TimeStep.h"
 
 class HEvent;
 
@@ -17,7 +18,7 @@ public:
 
 	virtual void OnAttach() {}
 	virtual void OnDetach() {}
-	virtual void OnUpdate() {}
+	virtual void OnUpdate(FTimeStep TimeStep) {}
 	virtual void OnImGuiRender() {}
 	virtual void OnEvent(HEvent& Event) {}
 

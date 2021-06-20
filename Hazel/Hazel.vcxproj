@@ -141,6 +141,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Hazel\Source\Hazel\Core\TimeStep.h" />
     <ClInclude Include="Hazel\Vendor\glm\glm\common.hpp" />
     <ClInclude Include="Hazel\Vendor\glm\glm\detail\_features.hpp" />
     <ClInclude Include="Hazel\Vendor\glm\glm\detail\_fixes.hpp" />

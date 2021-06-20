@@ -1287,6 +1287,7 @@
     <ClInclude Include="Hazel\Vendor\glm\glm\vector_relational.hpp">
       <Filter>Vendor\glm\glm</Filter>
     </ClInclude>
+    <ClInclude Include="Hazel\Source\Hazel\Core\TimeStep.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Hazel\Source\Hazel\Application.cpp">
