@@ -19,7 +19,7 @@ public:
 	static void BeginScene(Camera& InCamera);
 	static void EndScene();
 
-	static void Submit(const std::shared_ptr<VertexArray>& InVertexArray, const std::shared_ptr<Shader>& InShader);
+	static void Submit(const std::shared_ptr<VertexArray>& InVertexArray, const std::shared_ptr<Shader>& InShader, const glm::mat4& Transform = glm::mat4(1.0f));
 
 	inline static RendererAPI::ERendererAPI GetRendererAPI() { return RendererAPI::GetAPI(); }
 

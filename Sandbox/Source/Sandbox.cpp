@@ -2,6 +2,8 @@
 #include "imgui/imgui.h"
 #include "Hazel/Event/KeyEvent.h"
 #include "Hazel/Input.h"
+
+#include "glm/gtc/matrix_transform.hpp"
 //#include "Hazel/Core/TimeStep.h"
 
 class HExampleLayer : public Hazel::HLayer
@@ -58,7 +60,8 @@ public:
 			layout(location = 1) in vec4 a_Color;
 
 			uniform mat4 u_ViewProjection;
-		
+			uniform mat4 u_Transform;
+
 			out vec3 V_Position;
 			out vec4 V_Color;
 
@@ -66,7 +69,7 @@ public:
 			{
 				V_Position = a_Position;
 				V_Color = a_Color;
-				gl_Position = u_ViewProjection * vec4(a_Position, 1.0);
+				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);
 			}
 		)";
 
@@ -92,11 +95,12 @@ public:
 			out vec3 V_Position;
 			
 			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;
 
 			void main()
 			{
 				V_Position = a_Position;
-				gl_Position = u_ViewProjection * vec4(a_Position, 1.0);
+				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);
 			}
 		)";
 
@@ -143,9 +147,19 @@ public:
 
 		Hazel::Renderer::BeginScene(ViewportCamera);
 
-		Hazel::Renderer::Submit(SquareVertexArrayPtr, BlueShader);
-		Hazel::Renderer::Submit(VertexArrayPtr, ShaderPtr);
+		static glm::mat4 Scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
+		for (int x = 0; x < 20; x++)
+		{
+			for (int y = 0; y < 20; y++)
+			{
+				glm::vec3 Position(x * 0.11f, y * 0.11f, 0.0f);
+				glm::mat4 Transform = glm::translate(glm::mat4(1.0f), Position) * Scale;
+				Hazel::Renderer::Submit(SquareVertexArrayPtr, BlueShader, Transform);
+			}
+		}
+
+		Hazel::Renderer::Submit(VertexArrayPtr, ShaderPtr);
 		Hazel::Renderer::EndScene();
 	}
 
