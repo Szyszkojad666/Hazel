@@ -142,6 +142,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Hazel\Source\Hazel\Core\TimeStep.h" />
+    <ClInclude Include="Hazel\Source\Platform\OpenGL\OpenGLShader.h" />
     <ClInclude Include="Hazel\Vendor\glm\glm\common.hpp" />
     <ClInclude Include="Hazel\Vendor\glm\glm\detail\_features.hpp" />
     <ClInclude Include="Hazel\Vendor\glm\glm\detail\_fixes.hpp" />
@@ -576,6 +577,7 @@
     <ClCompile Include="Hazel\Source\Platform\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="Hazel\Source\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="Hazel\Source\Platform\OpenGL\OpenGLRendererAPI.cpp" />
+    <ClCompile Include="Hazel\Source\Platform\OpenGL\OpenGLShader.cpp" />
     <ClCompile Include="Hazel\Source\Platform\OpenGL\OpenGLVertexArray.cpp" />
     <ClCompile Include="Hazel\Source\Platform\Windows\WindowInput.cpp" />
     <ClCompile Include="Hazel\Source\Platform\Windows\WindowsWindow.cpp" />

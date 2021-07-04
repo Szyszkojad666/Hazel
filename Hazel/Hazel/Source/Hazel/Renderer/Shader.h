@@ -1,7 +1,6 @@
 #pragma once
 
 #include <string>
-#include "glm/glm.hpp"
 
 namespace Hazel {
 
@@ -9,16 +8,13 @@ class Shader
 {
 public:
 	
-	Shader(const std::string& VertexSrc, const std::string& FragmentSrc);
-	~Shader();
+	virtual ~Shader() = default;
 
-	void Bind() const;
-	void Unbind() const;
+	virtual void Bind() const = 0;
+	virtual void Unbind() const = 0;
 
-	void UploadUniformMat4(const std::string& MatrixName, const glm::mat4& Matrix);
+	//virtual void UploadUniformBuffer();
 
-private:
-
-	uint32_t RendererID;
+	static Shader* Create(const std::string& VertexSrc, const std::string& FragmentSrc);
 };
 }
