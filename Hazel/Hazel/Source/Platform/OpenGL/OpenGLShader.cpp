@@ -9,7 +9,7 @@ namespace Hazel {
 	OpenGLShader::OpenGLShader(const std::string & VertexSrc, const std::string & FragmentSrc)
 	{
 		// Create an empty vertex OpenGLShader handle
-		GLuint vertexOpenGLShader = glCreateShader(GL_VERTEX_SHADER);
+		const GLuint vertexOpenGLShader = glCreateShader(GL_VERTEX_SHADER);
 
 		// Send the vertex OpenGLShader source code to GL
 		// Note that std::string's .c_str is NULL character terminated.
@@ -34,13 +34,13 @@ namespace Hazel {
 			glDeleteShader(vertexOpenGLShader);
 
 			HZ_CORE_ERROR("{0}", infoLog.data());
-			HZ_CORE_ASSERT(false, "Vertex OpenGLShader compilation failure!");
+			HZ_CORE_ASSERT(false, "Vertex OpenGLShader compilation failure!")
 
 			return;
 		}
 
 		// Create an empty fragment OpenGLShader handle
-		GLuint fragmentOpenGLShader = glCreateShader(GL_FRAGMENT_SHADER);
+		const GLuint fragmentOpenGLShader = glCreateShader(GL_FRAGMENT_SHADER);
 
 		// Send the fragment OpenGLShader source code to GL
 		// Note that std::string's .c_str is NULL character terminated.
@@ -66,7 +66,7 @@ namespace Hazel {
 			glDeleteShader(vertexOpenGLShader);
 
 			HZ_CORE_ERROR("{0}", infoLog.data());
-			HZ_CORE_ASSERT(false, "Fragment OpenGLShader compilation failure!");
+			HZ_CORE_ASSERT(false, "Fragment OpenGLShader compilation failure!")
 
 			return;
 		}
@@ -103,7 +103,7 @@ namespace Hazel {
 			glDeleteShader(fragmentOpenGLShader);
 
 			HZ_CORE_ERROR("{0}", infoLog.data());
-			HZ_CORE_ASSERT(false, "OpenGLShader linking failure!");
+			HZ_CORE_ASSERT(false, "OpenGLShader linking failure!")
 
 			return;
 		}

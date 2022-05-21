@@ -1287,8 +1287,6 @@
     <ClInclude Include="Hazel\Vendor\glm\glm\vector_relational.hpp">
       <Filter>Vendor\glm\glm</Filter>
     </ClInclude>
-    <ClInclude Include="Hazel\Source\Hazel\Core\TimeStep.h" />
-    <ClInclude Include="Hazel\Source\Platform\OpenGL\OpenGLShader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Hazel\Source\Hazel\Application.cpp">
@@ -1342,6 +1340,9 @@
     <ClCompile Include="Hazel\Source\Platform\OpenGL\OpenGLRendererAPI.cpp">
       <Filter>Source\Platform\OpenGL</Filter>
     </ClCompile>
+    <ClCompile Include="Hazel\Source\Platform\OpenGL\OpenGLShader.cpp">
+      <Filter>Source\Platform\OpenGL</Filter>
+    </ClCompile>
     <ClCompile Include="Hazel\Source\Platform\OpenGL\OpenGLVertexArray.cpp">
       <Filter>Source\Platform\OpenGL</Filter>
     </ClCompile>
@@ -1351,6 +1352,5 @@
     <ClCompile Include="Hazel\Source\Platform\Windows\WindowsWindow.cpp">
       <Filter>Source\Platform\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="Hazel\Source\Platform\OpenGL\OpenGLShader.cpp" />
   </ItemGroup>
 </Project>

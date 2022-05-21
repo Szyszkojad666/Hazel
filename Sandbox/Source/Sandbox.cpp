@@ -46,13 +46,13 @@ public:
 			-0.5f,  0.5f, 0.0f
 		};
 
-		std::shared_ptr<Hazel::VertexBuffer> SquareVB;
+		Hazel::TRef<Hazel::VertexBuffer> SquareVB;
 		SquareVB.reset(Hazel::VertexBuffer::Create(SquareVerticies, sizeof(SquareVerticies)));
 		SquareVB->SetLayout({ { Hazel::EShaderDataType::Float3, "a_Position" } });
 		SquareVertexArrayPtr->AddVertexBuffer(SquareVB);
 
 		uint32_t SquareIndices[6] = { 0, 1, 2, 2, 3, 0 };
-		std::shared_ptr<Hazel::IndexBuffer> SquareIB;
+		Hazel::TRef<Hazel::IndexBuffer> SquareIB;
 		SquareIB.reset(Hazel::IndexBuffer::Create(SquareIndices, sizeof(SquareIndices) / sizeof(uint32_t)));
 		SquareVertexArrayPtr->SetIndexBuffer(SquareIB);
 
@@ -184,13 +184,13 @@ public:
 	}
 
 private:
-	std::shared_ptr<Hazel::Shader> ShaderPtr;
-	std::shared_ptr<Hazel::Shader> FlatColorShader;
-	std::shared_ptr<Hazel::VertexArray> VertexArrayPtr;
-	std::shared_ptr<Hazel::VertexBuffer> VertexBufferPtr;
-	std::shared_ptr<Hazel::IndexBuffer> IndexBufferPtr;
+	Hazel::TRef<Hazel::Shader> ShaderPtr;
+	Hazel::TRef<Hazel::Shader> FlatColorShader;
+	Hazel::TRef<Hazel::VertexArray> VertexArrayPtr;
+	Hazel::TRef<Hazel::VertexBuffer> VertexBufferPtr;
+	Hazel::TRef<Hazel::IndexBuffer> IndexBufferPtr;
 
-	std::shared_ptr<Hazel::VertexArray> SquareVertexArrayPtr;
+	Hazel::TRef<Hazel::VertexArray> SquareVertexArrayPtr;
 
 	Hazel::Camera ViewportCamera;
 	glm::vec3 CameraPosition;
