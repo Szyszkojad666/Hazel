@@ -7,19 +7,68 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d4ce8a9-8820-4700-8201-8e3b913ac43e" name="Changes" comment="" />
+    <list default="true" id="4d4ce8a9-8820-4700-8201-8e3b913ac43e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Hazel/Hazel/Source/Hazel/Renderer/Texture.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Hazel/Hazel/Source/Hazel/Renderer/Texture.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Hazel/Hazel/Source/Platform/OpenGL/OpenGLTexture.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Hazel/Hazel/Source/Platform/OpenGL/OpenGLTexture.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Hazel/Hazel/Vendor/stb_image/stb_image.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Hazel/Hazel/Vendor/stb_image/stb_image.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Hazel/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Hazel/.idea/indexLayout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Hazel/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Hazel/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hazel/Hazel.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Hazel/Hazel.vcxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hazel/Hazel.vcxproj.filters" beforeDir="false" afterPath="$PROJECT_DIR$/Hazel/Hazel.vcxproj.filters" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hazel/Hazel/Source/Hazel.h" beforeDir="false" afterPath="$PROJECT_DIR$/Hazel/Hazel/Source/Hazel.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hazel/Hazel/Source/Hazel/Application.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Hazel/Hazel/Source/Hazel/Application.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hazel/Hazel/Source/Hazel/Renderer/RenderCommand.h" beforeDir="false" afterPath="$PROJECT_DIR$/Hazel/Hazel/Source/Hazel/Renderer/RenderCommand.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hazel/Hazel/Source/Hazel/Renderer/Renderer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Hazel/Hazel/Source/Hazel/Renderer/Renderer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hazel/Hazel/Source/Hazel/Renderer/Renderer.h" beforeDir="false" afterPath="$PROJECT_DIR$/Hazel/Hazel/Source/Hazel/Renderer/Renderer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hazel/Hazel/Source/Hazel/Renderer/RendererAPI.h" beforeDir="false" afterPath="$PROJECT_DIR$/Hazel/Hazel/Source/Hazel/Renderer/RendererAPI.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hazel/Hazel/Source/Platform/OpenGL/OpenGLRendererAPI.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Hazel/Hazel/Source/Platform/OpenGL/OpenGLRendererAPI.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hazel/Hazel/Source/Platform/OpenGL/OpenGLRendererAPI.h" beforeDir="false" afterPath="$PROJECT_DIR$/Hazel/Hazel/Source/Platform/OpenGL/OpenGLRendererAPI.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hazel/Hazel/Vendor/GLFW" beforeDir="false" afterPath="$PROJECT_DIR$/Hazel/Hazel/Vendor/GLFW" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hazel/Hazel/Vendor/GLFW/premake5.lua" beforeDir="false" afterPath="$PROJECT_DIR$/Hazel/Hazel/Vendor/GLFW/premake5.lua" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hazel/Hazel/Vendor/Glad/bin-int/Debug-{cfg.system}-x86_64/Glad/Glad.Build.CppClean.log" beforeDir="false" afterPath="$PROJECT_DIR$/Hazel/Hazel/Vendor/Glad/bin-int/Debug-{cfg.system}-x86_64/Glad/Glad.Build.CppClean.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hazel/Hazel/Vendor/Glad/bin-int/Debug-{cfg.system}-x86_64/Glad/Glad.idb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hazel/Hazel/Vendor/Glad/bin-int/Debug-{cfg.system}-x86_64/Glad/Glad.log" beforeDir="false" afterPath="$PROJECT_DIR$/Hazel/Hazel/Vendor/Glad/bin-int/Debug-{cfg.system}-x86_64/Glad/Glad.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hazel/Hazel/Vendor/Glad/bin-int/Debug-{cfg.system}-x86_64/Glad/Glad.pdb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hazel/Hazel/Vendor/Glad/bin-int/Debug-{cfg.system}-x86_64/Glad/Glad.tlog/CL.command.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/Hazel/Hazel/Vendor/Glad/bin-int/Debug-{cfg.system}-x86_64/Glad/Glad.tlog/CL.command.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hazel/Hazel/Vendor/Glad/bin-int/Debug-{cfg.system}-x86_64/Glad/Glad.tlog/CL.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/Hazel/Hazel/Vendor/Glad/bin-int/Debug-{cfg.system}-x86_64/Glad/Glad.tlog/CL.read.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hazel/Hazel/Vendor/Glad/bin-int/Debug-{cfg.system}-x86_64/Glad/Glad.tlog/CL.write.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/Hazel/Hazel/Vendor/Glad/bin-int/Debug-{cfg.system}-x86_64/Glad/Glad.tlog/CL.write.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hazel/Hazel/Vendor/Glad/bin-int/Debug-{cfg.system}-x86_64/Glad/Glad.tlog/Lib-link.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/Hazel/Hazel/Vendor/Glad/bin-int/Debug-{cfg.system}-x86_64/Glad/Glad.tlog/Lib-link.read.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hazel/Hazel/Vendor/Glad/bin-int/Debug-{cfg.system}-x86_64/Glad/Glad.tlog/Lib-link.write.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/Hazel/Hazel/Vendor/Glad/bin-int/Debug-{cfg.system}-x86_64/Glad/Glad.tlog/Lib-link.write.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hazel/Hazel/Vendor/Glad/bin-int/Debug-{cfg.system}-x86_64/Glad/Glad.tlog/Lib.command.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/Hazel/Hazel/Vendor/Glad/bin-int/Debug-{cfg.system}-x86_64/Glad/Glad.tlog/Lib.command.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hazel/Hazel/Vendor/Glad/bin-int/Debug-{cfg.system}-x86_64/Glad/glad.obj" beforeDir="false" afterPath="$PROJECT_DIR$/Hazel/Hazel/Vendor/Glad/bin-int/Debug-{cfg.system}-x86_64/Glad/glad.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hazel/Hazel/Vendor/Glad/bin/Debug-{cfg.system}-x86_64/Glad/Glad.idb" beforeDir="false" afterPath="$PROJECT_DIR$/Hazel/Hazel/Vendor/Glad/bin/Debug-{cfg.system}-x86_64/Glad/Glad.idb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hazel/Hazel/Vendor/Glad/bin/Debug-{cfg.system}-x86_64/Glad/Glad.lib" beforeDir="false" afterPath="$PROJECT_DIR$/Hazel/Hazel/Vendor/Glad/bin/Debug-{cfg.system}-x86_64/Glad/Glad.lib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hazel/Hazel/Vendor/Glad/bin/Debug-{cfg.system}-x86_64/Glad/Glad.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Hazel/Hazel/Vendor/Glad/bin/Debug-{cfg.system}-x86_64/Glad/Glad.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hazel/Hazel/Vendor/imgui" beforeDir="false" afterPath="$PROJECT_DIR$/Hazel/Hazel/Vendor/imgui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hazel/Hazel/Vendor/imgui/imgui.h" beforeDir="false" afterPath="$PROJECT_DIR$/Hazel/Hazel/Vendor/imgui/imgui.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sandbox/Source/Sandbox.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Sandbox/Source/Sandbox.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sandbox/imgui.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Sandbox/imgui.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/premake5.lua" beforeDir="false" afterPath="$PROJECT_DIR$/premake5.lua" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+  </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.29.30133/include/memory" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Hazel/Hazel/Source/Hazel/Core.h" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hazel/Hazel/Source/Hazel/Core.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Hazel/Hazel/Source/Hazel/Core/TimeStep.h" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Hazel/Hazel/Source/Hazel/KeyCodes.h" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Hazel/Hazel/Source/Platform/OpenGL/OpenGLRendererAPI.h" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Hazel/Hazel/Source/Platform/OpenGL/OpenGLShader.h" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hazel/Hazel/Source/Hazel/Renderer/Buffer.h" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hazel/Hazel/Source/Hazel/Renderer/Texture.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hazel/Hazel/Source/Hazel/Renderer/VertexArray.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hazel/Hazel/Source/Platform/OpenGL/OpenGLRendererAPI.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hazel/Hazel/Source/Platform/OpenGL/OpenGLShader.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hazel/Hazel/Source/Platform/OpenGL/OpenGLTexture.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hazel/Hazel/Vendor/stb_image/stb_image.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hazel/Hazel/Vendor/stb_image/stb_image.h" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -35,7 +84,8 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.50057936&quot;
+    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.50057936&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;SolutionBuilderGeneralOptionsPage&quot;
   }
 }</component>
   <component name="RunManager">
@@ -87,9 +137,26 @@
       <workItem from="1653149950337" duration="30000" />
       <workItem from="1653150003370" duration="97000" />
       <workItem from="1653150255734" duration="1688000" />
-      <workItem from="1653158802600" duration="1074000" />
+      <workItem from="1653158802600" duration="2231000" />
+      <workItem from="1653853264687" duration="8735000" />
+      <workItem from="1654196237018" duration="4719000" />
+      <workItem from="1654612241420" duration="61000" />
+      <workItem from="1654614128022" duration="2000" />
+      <workItem from="1655579538659" duration="2093000" />
+      <workItem from="1655626204971" duration="2429000" />
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />

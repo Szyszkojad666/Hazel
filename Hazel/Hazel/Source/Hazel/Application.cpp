@@ -5,6 +5,7 @@
 #include "../../GLFW/include/GLFW/glfw3.h"
 #include "glm/glm.hpp"
 #include "GLFW/glfw3.h"
+#include "Renderer/Renderer.h"
 
 namespace Hazel {
 
@@ -42,6 +43,8 @@ namespace Hazel {
 		MainWindow = std::unique_ptr<IWindow>(IWindow::Create());
 		MainWindow->SetEventCallback(BIND_EVENT_FN(OnEvent));
 
+		Renderer::Init();
+		
 		bRunning = true;
 
 		ImGuiLayerPtr = new ImGuiLayer();

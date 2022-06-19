@@ -16,6 +16,8 @@ class Renderer
 
 public:
 
+	static void Init();
+
 	static void BeginScene(Camera& InCamera);
 	static void EndScene();
 

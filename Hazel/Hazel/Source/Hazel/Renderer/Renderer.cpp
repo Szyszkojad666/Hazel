@@ -7,6 +7,11 @@ namespace Hazel {
 
 FSceneData* Renderer::SceneData = new FSceneData;
 
+void Renderer::Init()
+{
+	RenderCommand::Init();
+}
+
 void Renderer::BeginScene(Camera& InCamera)
 {
 	SceneData->ViewProjectionMatrix = InCamera.GetViewProjectionMatrix();

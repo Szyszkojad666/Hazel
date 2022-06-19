@@ -16,6 +16,7 @@ workspace "Hazel"
 	IncludeDir["Glad"] = "Hazel/Hazel/Vendor/Glad/include"
 	IncludeDir["ImGui"] = "Hazel/Hazel/Vendor/imgui"
 	IncludeDir["glm"] = "Hazel/Hazel/Vendor/glm"
+	IncludeDir["stb_image"] = "Hazel/Hazel/Vendor/stb_image"
 
 	include "Hazel/Hazel/Vendor/GLFW"
 	include "Hazel/Hazel/Vendor/Glad"
@@ -32,12 +33,14 @@ project "Hazel"
 	objdir ("Intermediate/" ..outputdir .."/%{prj.name}")
 
 	pchheader "Hzpch.h"
-	pchsource "Hazel/Hazel/Source/Hzpch.cpp"
+	pchsource "Hazel/Hazel/Source/Hzpch.cpp"             
 
 	files
 	{
-		"%{prj.name}/Hazel/Sourc**.h",
+		"%{prj.name}/Hazel/Source/**.h",
 		"%{prj.name}/Hazel/Source/**.cpp",
+		"%{prj.name}/Hazel/Vendor/stb_image/**.h",
+		"%{prj.name}/Hazel/Vendor/stb_image/**.cpp",
 		"%{prj.name}/Hazel/Vendor/glm/glm/**.hpp",
 		"%{prj.name}/Hazel/Vendor/glm/glm/**.inl"
 	}
@@ -50,11 +53,12 @@ project "Hazel"
 	includedirs
 	{
 		"%{prj.name}/Hazel/Source",
-		"Hazel/Hazel/Vendor/spdlog/include",
+		"%{prj.name}/Hazel/Vendor/spdlog/include",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}",
+		"%{IncludeDir.stb_image}"
 	}
 
 	links

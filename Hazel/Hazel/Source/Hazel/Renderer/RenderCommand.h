@@ -9,6 +9,11 @@ class RenderCommand
 
 public:
 
+	inline static void Init()
+	{
+		RendererAPIptr->Init();
+	}
+	
 	inline static void SetClearColor(const glm::vec4& Color)
 	{
 		if (RendererAPIptr)

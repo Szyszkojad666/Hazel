@@ -77,7 +77,7 @@
       <PrecompiledHeaderFile>Hzpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;HZ_PLATFORM_WINDOWS;HZ_BUILD_DLL;GLFW_INCLUDE_NONE;HZ_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Hazel\Source;Hazel\Vendor\spdlog\include;Hazel\Vendor\GLFW\include;Hazel\Vendor\Glad\include;Hazel\Vendor\imgui;Hazel\Vendor\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Hazel\Source;Hazel\Vendor\spdlog\include;Hazel\Vendor\GLFW\include;Hazel\Vendor\Glad\include;Hazel\Vendor\imgui;Hazel\Vendor\glm;Hazel\Vendor\stb_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -97,7 +97,7 @@
       <PrecompiledHeaderFile>Hzpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;HZ_PLATFORM_WINDOWS;HZ_BUILD_DLL;GLFW_INCLUDE_NONE;HZ_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Hazel\Source;Hazel\Vendor\spdlog\include;Hazel\Vendor\GLFW\include;Hazel\Vendor\Glad\include;Hazel\Vendor\imgui;Hazel\Vendor\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Hazel\Source;Hazel\Vendor\spdlog\include;Hazel\Vendor\GLFW\include;Hazel\Vendor\Glad\include;Hazel\Vendor\imgui;Hazel\Vendor\glm;Hazel\Vendor\stb_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -121,7 +121,7 @@
       <PrecompiledHeaderFile>Hzpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;HZ_PLATFORM_WINDOWS;HZ_BUILD_DLL;GLFW_INCLUDE_NONE;HZ_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Hazel\Source;Hazel\Vendor\spdlog\include;Hazel\Vendor\GLFW\include;Hazel\Vendor\Glad\include;Hazel\Vendor\imgui;Hazel\Vendor\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Hazel\Source;Hazel\Vendor\spdlog\include;Hazel\Vendor\GLFW\include;Hazel\Vendor\Glad\include;Hazel\Vendor\imgui;Hazel\Vendor\glm;Hazel\Vendor\stb_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -140,6 +140,41 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Hazel\Source\Hazel.h" />
+    <ClInclude Include="Hazel\Source\Hazel\Application.h" />
+    <ClInclude Include="Hazel\Source\Hazel\Core.h" />
+    <ClInclude Include="Hazel\Source\Hazel\Core\TimeStep.h" />
+    <ClInclude Include="Hazel\Source\Hazel\EntryPoint.h" />
+    <ClInclude Include="Hazel\Source\Hazel\Event\AppEvent.h" />
+    <ClInclude Include="Hazel\Source\Hazel\Event\Event.h" />
+    <ClInclude Include="Hazel\Source\Hazel\Event\KeyEvent.h" />
+    <ClInclude Include="Hazel\Source\Hazel\Event\MouseEvent.h" />
+    <ClInclude Include="Hazel\Source\Hazel\ImGui\ImGuiLayer.h" />
+    <ClInclude Include="Hazel\Source\Hazel\Input.h" />
+    <ClInclude Include="Hazel\Source\Hazel\KeyCodes.h" />
+    <ClInclude Include="Hazel\Source\Hazel\Layer.h" />
+    <ClInclude Include="Hazel\Source\Hazel\LayerStack.h" />
+    <ClInclude Include="Hazel\Source\Hazel\Log.h" />
+    <ClInclude Include="Hazel\Source\Hazel\MouseButtonCodes.h" />
+    <ClInclude Include="Hazel\Source\Hazel\Renderer\Buffer.h" />
+    <ClInclude Include="Hazel\Source\Hazel\Renderer\Camera\Camera.h" />
+    <ClInclude Include="Hazel\Source\Hazel\Renderer\GraphicsContext.h" />
+    <ClInclude Include="Hazel\Source\Hazel\Renderer\RenderCommand.h" />
+    <ClInclude Include="Hazel\Source\Hazel\Renderer\Renderer.h" />
+    <ClInclude Include="Hazel\Source\Hazel\Renderer\RendererAPI.h" />
+    <ClInclude Include="Hazel\Source\Hazel\Renderer\Shader.h" />
+    <ClInclude Include="Hazel\Source\Hazel\Renderer\Texture.h" />
+    <ClInclude Include="Hazel\Source\Hazel\Renderer\VertexArray.h" />
+    <ClInclude Include="Hazel\Source\Hazel\Window.h" />
+    <ClInclude Include="Hazel\Source\Hzpch.h" />
+    <ClInclude Include="Hazel\Source\Platform\OpenGL\OpenGLBuffer.h" />
+    <ClInclude Include="Hazel\Source\Platform\OpenGL\OpenGLContext.h" />
+    <ClInclude Include="Hazel\Source\Platform\OpenGL\OpenGLRendererAPI.h" />
+    <ClInclude Include="Hazel\Source\Platform\OpenGL\OpenGLShader.h" />
+    <ClInclude Include="Hazel\Source\Platform\OpenGL\OpenGLTexture.h" />
+    <ClInclude Include="Hazel\Source\Platform\OpenGL\OpenGLVertexArray.h" />
+    <ClInclude Include="Hazel\Source\Platform\Windows\WindowInput.h" />
+    <ClInclude Include="Hazel\Source\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="Hazel\Vendor\glm\glm\common.hpp" />
     <ClInclude Include="Hazel\Vendor\glm\glm\detail\_features.hpp" />
     <ClInclude Include="Hazel\Vendor\glm\glm\detail\_fixes.hpp" />
@@ -553,6 +588,7 @@
     <ClInclude Include="Hazel\Vendor\glm\glm\vec3.hpp" />
     <ClInclude Include="Hazel\Vendor\glm\glm\vec4.hpp" />
     <ClInclude Include="Hazel\Vendor\glm\glm\vector_relational.hpp" />
+    <ClInclude Include="Hazel\Vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Hazel\Source\Hazel\Application.cpp" />
@@ -567,6 +603,7 @@
     <ClCompile Include="Hazel\Source\Hazel\Renderer\Renderer.cpp" />
     <ClCompile Include="Hazel\Source\Hazel\Renderer\RendererAPI.cpp" />
     <ClCompile Include="Hazel\Source\Hazel\Renderer\Shader.cpp" />
+    <ClCompile Include="Hazel\Source\Hazel\Renderer\Texture.cpp" />
     <ClCompile Include="Hazel\Source\Hazel\Renderer\VertexArray.cpp" />
     <ClCompile Include="Hazel\Source\Hzpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
@@ -575,9 +612,11 @@
     <ClCompile Include="Hazel\Source\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="Hazel\Source\Platform\OpenGL\OpenGLRendererAPI.cpp" />
     <ClCompile Include="Hazel\Source\Platform\OpenGL\OpenGLShader.cpp" />
+    <ClCompile Include="Hazel\Source\Platform\OpenGL\OpenGLTexture.cpp" />
     <ClCompile Include="Hazel\Source\Platform\OpenGL\OpenGLVertexArray.cpp" />
     <ClCompile Include="Hazel\Source\Platform\Windows\WindowInput.cpp" />
     <ClCompile Include="Hazel\Source\Platform\Windows\WindowsWindow.cpp" />
+    <ClCompile Include="Hazel\Vendor\stb_image\stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Hazel\Vendor\GLFW\GLFW.vcxproj">
