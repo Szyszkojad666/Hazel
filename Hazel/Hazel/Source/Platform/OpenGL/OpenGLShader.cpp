@@ -1,116 +1,41 @@
 #include "Hzpch.h"
 #include "OpenGLShader.h"
 
+#include "fstream"
 #include "glad/glad.h"
 #include "glm/gtc/type_ptr.hpp"
 
 namespace Hazel {
 
+	static GLenum ShaderTypeFromString(const std::string& Type)
+	{
+		if (Type == "Vertex")
+		{
+			return  GL_VERTEX_SHADER;
+		}
+		if (Type == "Fragment" || Type == "Pixel")
+		{
+			return GL_FRAGMENT_SHADER;
+		}
+
+		HZ_CORE_ASSERT(false, "Unknown shader type!");
+		return 0;
+	}
+	
+	OpenGLShader::OpenGLShader(const std::string& FilePath)
+	{
+		std::string ShaderSource = ReadFile(FilePath);
+		auto ShaderSources = PreProcess(ShaderSource);
+		Compile(ShaderSources);
+	}
+
 	OpenGLShader::OpenGLShader(const std::string & VertexSrc, const std::string & FragmentSrc)
 	{
-		// Create an empty vertex OpenGLShader handle
-		const GLuint vertexOpenGLShader = glCreateShader(GL_VERTEX_SHADER);
+		std::unordered_map<GLenum, std::string> ShaderSources;
+		ShaderSources[GL_VERTEX_SHADER] = VertexSrc;
+		ShaderSources[GL_FRAGMENT_SHADER] = FragmentSrc;
 
-		// Send the vertex OpenGLShader source code to GL
-		// Note that std::string's .c_str is NULL character terminated.
-		const GLchar* source = VertexSrc.c_str();
-		glShaderSource(vertexOpenGLShader, 1, &source, 0);
-
-		// Compile the vertex Shader
-		glCompileShader(vertexOpenGLShader);
-
-		GLint isCompiled = 0;
-		glGetShaderiv(vertexOpenGLShader, GL_COMPILE_STATUS, &isCompiled);
-		if (isCompiled == GL_FALSE)
-		{
-			GLint maxLength = 0;
-			glGetShaderiv(vertexOpenGLShader, GL_INFO_LOG_LENGTH, &maxLength);
-
-			// The maxLength includes the NULL character
-			std::vector<GLchar> infoLog(maxLength);
-			glGetShaderInfoLog(vertexOpenGLShader, maxLength, &maxLength, &infoLog[0]);
-
-			// We don't need the Shader anymore.
-			glDeleteShader(vertexOpenGLShader);
-
-			HZ_CORE_ERROR("{0}", infoLog.data());
-			HZ_CORE_ASSERT(false, "Vertex OpenGLShader compilation failure!")
-
-			return;
-		}
-
-		// Create an empty fragment OpenGLShader handle
-		const GLuint fragmentOpenGLShader = glCreateShader(GL_FRAGMENT_SHADER);
-
-		// Send the fragment OpenGLShader source code to GL
-		// Note that std::string's .c_str is NULL character terminated.
-		source = FragmentSrc.c_str();
-		glShaderSource(fragmentOpenGLShader, 1, &source, 0);
-
-		// Compile the fragment OpenGLShader
-		glCompileShader(fragmentOpenGLShader);
-
-		glGetShaderiv(fragmentOpenGLShader, GL_COMPILE_STATUS, &isCompiled);
-		if (isCompiled == GL_FALSE)
-		{
-			GLint maxLength = 0;
-			glGetShaderiv(fragmentOpenGLShader, GL_INFO_LOG_LENGTH, &maxLength);
-
-			// The maxLength includes the NULL character
-			std::vector<GLchar> infoLog(maxLength);
-			glGetShaderInfoLog(fragmentOpenGLShader, maxLength, &maxLength, &infoLog[0]);
-
-			// We don't need the OpenGLShader anymore.
-			glDeleteShader(fragmentOpenGLShader);
-			// Either of them. Don't leak OpenGLShaders.
-			glDeleteShader(vertexOpenGLShader);
-
-			HZ_CORE_ERROR("{0}", infoLog.data());
-			HZ_CORE_ASSERT(false, "Fragment OpenGLShader compilation failure!")
-
-			return;
-		}
-
-		// Vertex and fragment OpenGLShaders are successfully compiled.
-		// Now time to link them together into a program.
-		// Get a program object.
-		RendererID = glCreateProgram();
-		GLuint program = RendererID;
-
-		// Attach our OpenGLShaders to our program
-		glAttachShader(program, vertexOpenGLShader);
-		glAttachShader(program, fragmentOpenGLShader);
-
-		// Link our program
-		glLinkProgram(program);
-
-		// Note the different functions here: glGetProgram* instead of glGetOpenGLShader*.
-		GLint isLinked = 0;
-		glGetProgramiv(program, GL_LINK_STATUS, (int *)&isLinked);
-		if (isLinked == GL_FALSE)
-		{
-			GLint maxLength = 0;
-			glGetProgramiv(program, GL_INFO_LOG_LENGTH, &maxLength);
-
-			// The maxLength includes the NULL character
-			std::vector<GLchar> infoLog(maxLength);
-			glGetProgramInfoLog(program, maxLength, &maxLength, &infoLog[0]);
-
-			// We don't need the program anymore.
-			glDeleteProgram(program);
-			// Don't leak OpenGLShaders either.
-			glDeleteShader(vertexOpenGLShader);
-			glDeleteShader(fragmentOpenGLShader);
-
-			HZ_CORE_ERROR("{0}", infoLog.data());
-			HZ_CORE_ASSERT(false, "OpenGLShader linking failure!")
-
-			return;
-		}
-
-		// Always detach OpenGLShaders after a successful link.
-		glDetachShader(program, vertexOpenGLShader);
-		glDetachShader(program, fragmentOpenGLShader);
+		Compile(ShaderSources);
 	}
 
 	OpenGLShader::~OpenGLShader()
@@ -170,4 +95,131 @@ namespace Hazel {
 		glUniformMatrix4fv(Location, 1, GL_FALSE, glm::value_ptr(Matrix));
 	}
 
+	std::string OpenGLShader::ReadFile(const std::string& FilePath)
+	{
+		std::string Result;
+		std::ifstream In(FilePath, std::ios::in | std::ios::binary);
+		if (In)
+		{
+			In.seekg(0, std::ios::end);
+			Result.resize(In.tellg());
+			In.seekg(0, std::ios::beg);
+			In.read(&Result[0], Result.size());
+			In.close();
+		}
+		else
+		{
+			HZ_CORE_ERROR("Could not open file '{0}'", FilePath);
+		}
+
+		return Result;
+	}
+
+	std::unordered_map<GLenum, std::string> OpenGLShader::PreProcess(const std::string& Source)
+	{
+		std::unordered_map<GLenum, std::string> ShaderSourceMap;
+
+		const char* TypeToken = "#type";
+		const size_t TypeTokenLength = strlen(TypeToken);
+		size_t Pos = Source.find(TypeToken, 0);
+		while (Pos != std::string::npos)
+		{
+			const size_t Eol = Source.find_first_of("\r\n", Pos);
+			HZ_CORE_ASSERT(Eol != std::string::npos, "Syntax error");
+			const size_t Begin = Pos + TypeTokenLength + 1;
+			const std::string Type = Source.substr(Begin, Eol - Begin);
+			HZ_CORE_ASSERT(Type == "Vertex" || Type == "Fragment" || Type == "Pixel", "Invalid shader type specifier");
+
+			const size_t NextLinePos = Source.find_first_not_of("\r\n", Eol);
+			Pos = Source.find(TypeToken, NextLinePos);
+			ShaderSourceMap[ShaderTypeFromString(Type)] = Source.substr(NextLinePos,
+				Pos - (NextLinePos == std::string::npos ? Source.size() - 1 : NextLinePos));
+		}
+
+		return ShaderSourceMap;
+	}
+
+	void OpenGLShader::Compile(const std::unordered_map<GLenum, std::string>& ShaderSourceMap)
+	{
+		HZ_CORE_ASSERT(ShaderSourceMap.size(), "ShaderSourceMap is empty!");
+		
+		GLuint Program = glCreateProgram();
+		std::vector<GLenum> GLShaderIds;
+		GLShaderIds.reserve(ShaderSourceMap.size());
+		for (const auto& Pair : ShaderSourceMap)
+		{
+			GLenum Type = Pair.first;
+			const std::string& Source = Pair.second;
+
+			const GLuint Shader = glCreateShader(Type);
+
+			// Send the vertex OpenGLShader source code to GL
+			// Note that std::string's .c_str is NULL character terminated.
+			const GLchar* sourceCStr = Source.c_str();
+			glShaderSource(Shader, 1, &sourceCStr, 0);
+
+			// Compile the vertex Shader
+			glCompileShader(Shader);
+
+			GLint isCompiled = 0;
+			glGetShaderiv(Shader, GL_COMPILE_STATUS, &isCompiled);
+			if (isCompiled == GL_FALSE)
+			{
+				GLint maxLength = 0;
+				glGetShaderiv(Shader, GL_INFO_LOG_LENGTH, &maxLength);
+
+				// The maxLength includes the NULL character
+				std::vector<GLchar> infoLog(maxLength);
+				glGetShaderInfoLog(Shader, maxLength, &maxLength, &infoLog[0]);
+
+				// We don't need the Shader anymore.
+				glDeleteShader(Shader);
+
+				HZ_CORE_ERROR("{0}", infoLog.data());
+				HZ_CORE_ASSERT(false, "Shader compilation failure!")
+
+				break;
+			}
+			glAttachShader(Program, Shader);
+			GLShaderIds.push_back(Shader);
+		}
+		
+		// Link our program
+		glLinkProgram(Program);
+
+		// Note the different functions here: glGetProgram* instead of glGetOpenGLShader*.
+		GLint isLinked = 0;
+		glGetProgramiv(Program, GL_LINK_STATUS, (int *)&isLinked);
+		if (isLinked == GL_FALSE)
+		{
+			GLint maxLength = 0;
+			glGetProgramiv(Program, GL_INFO_LOG_LENGTH, &maxLength);
+
+			// The maxLength includes the NULL character
+			std::vector<GLchar> infoLog(maxLength);
+			glGetProgramInfoLog(Program, maxLength, &maxLength, &infoLog[0]);
+
+			// We don't need the program anymore.
+			glDeleteProgram(Program);
+			// Don't leak OpenGLShaders either.
+
+			for (const auto ShaderId : GLShaderIds)
+			{
+				glDeleteShader(ShaderId);
+			}
+			
+			HZ_CORE_ERROR("{0}", infoLog.data());
+			HZ_CORE_ASSERT(false, "OpenGLShader linking failure!")
+
+			return;
+		}
+
+		// Always detach OpenGLShaders after a successful link.
+		for (const auto ShaderId : GLShaderIds)
+		{
+			glDetachShader(Program, ShaderId);
+		}
+
+		RendererID = Program;
+	}
 }
